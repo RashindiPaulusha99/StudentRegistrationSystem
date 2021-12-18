@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.LoginFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="970.0" prefWidth="1805.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+   <children>
+      <ImageView fitHeight="970.0" fitWidth="1805.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/images/blackBoard.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="519.0" layoutY="212.0" prefHeight="539.0" prefWidth="673.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <effect>
+            <DropShadow height="129.84" radius="67.53" spread="0.28" width="142.28" />
+         </effect>
+      </AnchorPane>
+      <ImageView fitHeight="205.0" fitWidth="337.0" layoutX="1051.0" layoutY="529.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/images/ai-education.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>
