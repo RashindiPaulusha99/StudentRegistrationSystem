@@ -1,0 +1,15 @@
+.text-area{
+    -fx-background-radius: 0px 0px 900px 0px;
+    -fx-background-color:linear-gradient(to right, #40739e, #353b48);
+}
+
+.button{
+    -fx-border-color: white;
+    -fx-border-radius: 50;
+    -fx-border-width: 3;
+    -fx-cursor: hand;
+}
+
+.button:hover{
+    -fx-border-color: cornflowerblue;
+}
