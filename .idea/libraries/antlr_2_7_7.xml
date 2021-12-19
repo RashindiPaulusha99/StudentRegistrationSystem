@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="antlr-2.7.7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/antlr-2.7.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/ehcache-3.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/jaxb-api-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/classmate-1.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/byte-buddy-1.11.20.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/stax-ex-1.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/hibernate-ehcache-4.1.9.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/jboss-logging-3.4.2.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/txw2-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/hibernate-commons-annotations-5.1.2.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/mysql-connector-java-8.0.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/jaxb-runtime-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/javax.persistence-api-2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/istack-commons-runtime-3.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/javax.activation-api-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/jandex-2.2.3.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/FastInfoset-1.2.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../Hibernate/lib/hibernate-core-5.6.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

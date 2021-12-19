@@ -1,0 +1,10 @@
+.background-pane{
+    -fx-background-color:linear-gradient(to right, #aa4b6b ,#6b6b83, #3b8d99);
+
+}
+
+.anchor-pane{
+    /*-fx-background-color:linear-gradient(to right, #00cec9 , #16a085 75%);*/
+    /*-fx-background-color:linear-gradient(to right, #2C3A47 , #B33771);*/
+    -fx-background-color:linear-gradient(to right,#2C3A47, #f0932b, #2C3A47);
+}
