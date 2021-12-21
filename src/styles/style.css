@@ -14,3 +14,13 @@
     -fx-border-color: cornflowerblue;
 }
 
+.text-field{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.password-field{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
