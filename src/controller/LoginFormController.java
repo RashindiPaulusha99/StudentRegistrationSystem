@@ -1,6 +1,7 @@
 package controller;
 
 import dao.LoginDAOImpl;
+import entity.Login;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,15 +24,23 @@ public class LoginFormController {
 
     public void DashBoardFormOnAction(ActionEvent event) throws IOException {
 
-        if (loginDAO.searchCorrectUsernameAndPassword(txtUsername.getText(),txtPassword.getText())){
-            URL resource = getClass().getResource("../view/DashBoardForm.fxml");
-            Parent load = FXMLLoader.load(resource);
-            Scene scene = new Scene(load);
-            Stage window = (Stage) loginContext.getScene().getWindow();
-            window.setScene(scene);
-            window.centerOnScreen();
+        if (txtUsername.getText().equals("") || txtPassword.getText().equals("")){
+            new Alert(Alert.AlertType.WARNING, "All Fields Are Required.").show();
         }else {
-            new Alert(Alert.AlertType.WARNING, "Please Check Correct Username And Password.").show();
+
+            Login data = loginDAO.search(txtUsername.getText());
+
+            if (data.getUserName().equals(txtUsername.getText())){
+
+                URL resource = getClass().getResource("../view/DashBoardForm.fxml");
+                Parent load = FXMLLoader.load(resource);
+                Scene scene = new Scene(load);
+                Stage window = (Stage) loginContext.getScene().getWindow();
+                window.setScene(scene);
+                window.centerOnScreen();
+            }else {
+                new Alert(Alert.AlertType.WARNING, "Please Check Correct User Detail.").show();
+            }
         }
 
     }

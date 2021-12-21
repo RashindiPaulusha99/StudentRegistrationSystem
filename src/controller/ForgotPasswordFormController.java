@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class ForgotPasswordFormController {
 
@@ -59,8 +60,8 @@ public class ForgotPasswordFormController {
 
             if (txtPassword.getText().equals(txtConfirmPassword.getText())){
 
-                Login userId = loginDAO.search(txtUsername.getText());
-                Login login = new Login(userId.getUserId(),txtUsername.getText(),txtPassword.getText());
+                Login data = loginDAO.search(txtUsername.getText());
+                Login login = new Login(data.getUserId(),txtUsername.getText(),txtPassword.getText());
 
                 if (loginDAO.update(login)) {
                     new Alert(Alert.AlertType.CONFIRMATION,"Your Password was Changed.").show();

@@ -28,7 +28,6 @@ public class LoginDAOImpl implements LoginDAO{
         }else {
             return true;
         }
-
     }
 
     @Override
@@ -74,30 +73,4 @@ public class LoginDAOImpl implements LoginDAO{
         throw new UnsupportedOperationException("No Supported Yet.");
     }
 
-    @Override
-    public boolean searchCorrectUsernameAndPassword(String userName, String password) {
-
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        String hql = "FROM Login WHERE userName= :name AND password= :userPassword";
-        Query hqlQuery = session.createQuery(hql);
-        hqlQuery.setParameter("name", userName);
-        hqlQuery.setParameter("userPassword", password);
-
-        boolean b;
-
-
-
-        if (hqlQuery.executeUpdate()>0){
-            b = true;
-        }else {
-            b = false;
-        }
-
-        transaction.commit();
-        session.close();
-
-        return b;
-    }
 }
