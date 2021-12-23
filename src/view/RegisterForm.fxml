@@ -18,7 +18,7 @@
       <Polyline fill="CHARTREUSE" layoutX="737.0" layoutY="34.0" points="193.0, 202.0, 13.0, 273.0, -167.0, 202.00001525878906, 12.0, 102.0" strokeType="INSIDE" style="-fx-fill: linear-gradient(to right,#2C3A47, #f0932b, #2C3A47); -fx-stroke-width: 0;" styleClass="anchor-pane" />
       <Polyline fill="CHARTREUSE" layoutX="557.0" layoutY="790.0" points="-148.0, -626.0, 190.0, -483.0, 190.0, -483.0, -147.99996948242188, -347.0" strokeType="INSIDE" style="-fx-fill: linear-gradient(to right, #2C3A47 , #B33771); -fx-stroke-width: 0;" />
       <Polyline fill="CHARTREUSE" layoutX="963.0" layoutY="248.0" points="129.0, -76.0, 130.0, 602.0, -554.0, 602.0, -554.0, 195.0" strokeType="INSIDE" style="-fx-fill: linear-gradient(to right,#778beb, #2C3A47); -fx-stroke-width: 0;" styleClass="anchor-pane" />
-      <JFXButton layoutX="665.0" layoutY="732.0" onAction="#registerOnAction" prefHeight="50.0" prefWidth="148.0" style="-fx-border-color: white; -fx-border-radius: 20;" text="Register" textFill="WHITE">
+      <JFXButton layoutX="665.0" layoutY="743.0" onAction="#registerOnAction" prefHeight="50.0" prefWidth="148.0" style="-fx-border-color: white; -fx-border-radius: 20;" text="Register" textFill="WHITE">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
@@ -71,7 +71,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="539.0" layoutY="531.0" prefHeight="56.0" prefWidth="427.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2;">
+      <AnchorPane layoutX="539.0" layoutY="570.0" prefHeight="56.0" prefWidth="427.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2;">
          <children>
             <ImageView fitHeight="23.0" fitWidth="34.0" layoutX="20.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -85,7 +85,7 @@
             </TextField>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="541.0" layoutY="629.0" prefHeight="56.0" prefWidth="427.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2;">
+      <AnchorPane layoutX="541.0" layoutY="651.0" prefHeight="56.0" prefWidth="427.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2;">
          <children>
             <ImageView fitHeight="28.0" fitWidth="23.0" layoutX="20.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -99,7 +99,21 @@
             </PasswordField>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="540.0" layoutY="435.0" prefHeight="56.0" prefWidth="427.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2;">
+      <AnchorPane layoutX="538.0" layoutY="489.0" prefHeight="56.0" prefWidth="427.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2;">
+         <children>
+            <ImageView fitHeight="23.0" fitWidth="34.0" layoutX="20.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons/icons8-user-24.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtName" layoutX="45.0" layoutY="6.0" prefHeight="45.0" prefWidth="351.0" promptText="Name" style="-fx-background-color: none; -fx-border-radius: 30;" styleClass="text-field" stylesheets="@../styles/style.css">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="540.0" layoutY="406.0" prefHeight="56.0" prefWidth="427.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2;">
          <children>
             <ImageView fitHeight="23.0" fitWidth="34.0" layoutX="20.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>

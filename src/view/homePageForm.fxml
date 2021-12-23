@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="homePageContext" prefHeight="970.0" prefWidth="1482.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomePageFormController">
+   <children>
+      <AnchorPane prefHeight="66.0" prefWidth="1482.0" style="-fx-background-color: #63cdda;">
+         <children>
+            <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="1273.0" layoutY="14.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/images/icons8-user-90.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblUser" layoutX="1321.0" layoutY="18.0" prefHeight="30.0" prefWidth="140.0" text="user" textFill="WHITE">
+               <font>
+                  <Font name="Berlin Sans FB" size="26.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="53.0" layoutX="13.0" layoutY="9.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/images/digree.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <Label layoutX="79.0" layoutY="14.0" text="SIPSEWANA Institute" textFill="WHITE">
+               <font>
+                  <Font name="Elephant" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="893.0" prefHeight="77.0" prefWidth="1482.0" style="-fx-background-color: #c7ecee;">
+         <children>
+            <AnchorPane layoutX="8.0" layoutY="11.0" prefHeight="57.0" prefWidth="1460.0" style="-fx-background-color: white;">
+               <children>
+                  <Label layoutX="662.0" layoutY="18.0" text="2021 All Right Reserved.">
+                     <font>
+                        <Font name="Calibri Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneRegisterStudent" layoutX="126.0" layoutY="311.0" onMouseClicked="#mouseClickedAnimation" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="232.0" prefWidth="338.0" style="-fx-background-color: linear-gradient(to right, #ff7979 , #eb3b5a); -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Label layoutX="54.0" layoutY="162.0" text="Register Students" textFill="WHITE">
+               <font>
+                  <Font name="Arial Italic" size="29.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="102.0" layoutY="27.0" prefHeight="112.0" prefWidth="136.0" style="-fx-background-color: linear-gradient(to right, #ff7979 , #eb3b5a); -fx-background-radius: 40;">
+               <children>
+                  <ImageView fitHeight="93.0" fitWidth="95.0" layoutX="18.0" layoutY="10.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../assets/images/icons8-registration-96.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneStudentList" layoutX="991.0" layoutY="305.0" onMouseClicked="#mouseClickedAnimation" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="232.0" prefWidth="338.0" style="-fx-background-color: linear-gradient(to right, #81ecec , #0fb9b1); -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <AnchorPane layoutX="104.0" layoutY="22.0" prefHeight="106.0" prefWidth="131.0" style="-fx-background-color: linear-gradient(to right, #81ecec , #0fb9b1); -fx-background-radius: 40;">
+               <children>
+                  <ImageView fitHeight="84.0" fitWidth="95.0" layoutX="19.0" layoutY="11.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../assets/images/icons8-students-64.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="91.0" layoutY="156.0" text="Student List" textFill="WHITE">
+               <font>
+                  <Font name="Arial Italic" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneProgrammeList" layoutX="567.0" layoutY="599.0" onMouseClicked="#mouseClickedAnimation" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="232.0" prefWidth="338.0" style="-fx-background-color: linear-gradient(to right, #e056fd , #9b59b6); -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <AnchorPane layoutX="94.0" layoutY="23.0" prefHeight="112.0" prefWidth="135.0" style="-fx-background-color: linear-gradient(to right, #e056fd , #9b59b6); -fx-background-radius: 40;">
+               <children>
+                  <ImageView fitHeight="77.0" fitWidth="99.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../assets/images/icons8-courses-64.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="60.0" layoutY="154.0" text="Programme List" textFill="WHITE">
+               <font>
+                  <Font name="Arial Italic" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneNewProgrammes" layoutX="567.0" layoutY="311.0" onMouseClicked="#mouseClickedAnimation" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="232.0" prefWidth="338.0" style="-fx-background-color: linear-gradient(to right, #fd79a8 , #e84393); -fx-background-radius: 50;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <AnchorPane layoutX="90.0" layoutY="21.0" prefHeight="110.0" prefWidth="135.0" style="-fx-background-color: linear-gradient(to right, #fd79a8 , #e84393); -fx-background-radius: 40;">
+               <children>
+                  <ImageView fitHeight="79.0" fitWidth="83.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../assets/images/icons8-new-copy-90.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="103.0" layoutY="141.0" text="Add New" textFill="WHITE">
+               <font>
+                  <Font name="Arial Italic" size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="177.0" text="Training Programmes" textFill="WHITE">
+               <font>
+                  <Font name="Arial Italic" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="78.0" layoutY="99.0" prefHeight="108.0" prefWidth="421.0" style="-fx-background-color: #9980FA;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="871.0" layoutY="99.0" prefHeight="106.0" prefWidth="429.0" style="-fx-background-color: #F79F1F;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Separator layoutY="268.0" prefHeight="0.0" prefWidth="1481.0" />
+      <AnchorPane layoutX="95.0" layoutY="117.0" prefHeight="126.0" prefWidth="385.0" style="-fx-background-color: linear-gradient(to right, #74b9ff , #a29bfe);">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Registered Students" underline="true">
+               <font>
+                  <Font name="Script MT Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblStudentCount" layoutX="107.0" layoutY="63.0" prefHeight="39.0" prefWidth="74.0" text="count " textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="885.0" layoutY="115.0" prefHeight="126.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to right,  #fed330 , #ff9f43);">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Training Programmes" underline="true">
+               <font>
+                  <Font name="Script MT Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblProgrammesCount" layoutX="130.0" layoutY="66.0" prefHeight="39.0" prefWidth="74.0" text="count " textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="370.0" fitWidth="451.0" layoutX="1006.0" layoutY="578.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/images/success.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

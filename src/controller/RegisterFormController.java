@@ -20,6 +20,7 @@ public class RegisterFormController {
     public TextField txtUsername;
     public TextField txtPassword;
     public TextField txtUserId;
+    public TextField txtName;
 
     LoginDAOImpl loginDAO = new LoginDAOImpl();
 
@@ -52,11 +53,11 @@ public class RegisterFormController {
 
     public void registerOnAction(ActionEvent event) {
 
-        if (txtUsername.getText().equals("") || txtPassword.getText().equals("") || txtUserId.getText().equals("")){
+        if (txtUsername.getText().equals("") || txtPassword.getText().equals("") || txtUserId.getText().equals("") || txtName.getText().equals("")){
             new Alert(Alert.AlertType.WARNING,"All Fields Are Required.").show();
         }else {
 
-            if (loginDAO.add(new Login(txtUserId.getText(), txtUsername.getText(), txtPassword.getText()))) {
+            if (loginDAO.add(new Login(txtUserId.getText(), txtUsername.getText(), txtPassword.getText(),txtName.getText()))) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.").show();
             } else {
                 new Alert(Alert.AlertType.WARNING, "Try Again.").show();

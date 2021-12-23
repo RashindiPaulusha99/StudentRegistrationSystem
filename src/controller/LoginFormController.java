@@ -30,13 +30,14 @@ public class LoginFormController {
 
             Login data = loginDAO.search(txtUsername.getText());
 
-            if (data.getUserName().equals(txtUsername.getText())){
+            if (data.getUserName().equals(txtUsername.getText()) && data.getPassword().equals(txtPassword.getText())){
 
-                URL resource = getClass().getResource("../view/DashBoardForm.fxml");
-                Parent load = FXMLLoader.load(resource);
-                Scene scene = new Scene(load);
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../view/DashBoardForm.fxml"));
+                Parent load = loader.load();
+                DashBoardFormController controller = loader.<DashBoardFormController>getController();
+                controller.setUserAndName(data.getUserName(),data.getName());
                 Stage window = (Stage) loginContext.getScene().getWindow();
-                window.setScene(scene);
+                window.setScene(new Scene(load));
                 window.centerOnScreen();
             }else {
                 new Alert(Alert.AlertType.WARNING, "Please Check Correct User Detail.").show();

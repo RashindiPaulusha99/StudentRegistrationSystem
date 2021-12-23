@@ -9,14 +9,16 @@ public class Login {
     private String userId;
     private String userName;
     private String password;
+    private String name;
 
     public Login() {
     }
 
-    public Login(String userId, String userName, String password) {
+    public Login(String userId, String userName, String password, String name) {
         this.setUserId(userId);
         this.setUserName(userName);
         this.setPassword(password);
+        this.setName(name);
     }
 
     public String getUserId() {
@@ -43,12 +45,21 @@ public class Login {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Login{" +
                 "userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

@@ -60,12 +60,12 @@ public class LoginDAOImpl implements LoginDAO{
 
         List<Login> list = query.list();
 
-        Login load = session.load(Login.class, list.get(0).getUserId());
+        Login login = session.load(Login.class, list.get(0).getUserId());
 
         transaction.commit();
         session.close();
 
-        return load;
+        return login;
     }
 
     @Override
