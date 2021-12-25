@@ -1,9 +1,4 @@
-.button{
-    /*-fx-background-color: none;*/
 
+.text_field {
+    -fx-background-color: linear-gradient(to right,#FD7272,#ED4C67);
 }
-
-.button:hover{
-    color: deeppink;
-}
-

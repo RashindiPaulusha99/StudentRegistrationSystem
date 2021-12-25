@@ -37,7 +37,7 @@
                               <Font name="Arial" size="24.0" />
                            </font>
                         </JFXButton>
-                        <ImageView fx:id="imgDashBoard" fitHeight="41.0" fitWidth="45.0" layoutX="14.0" layoutY="244.0" onMouseEntered="#image" pickOnBounds="true">
+                        <ImageView fx:id="imgDashBoard" fitHeight="41.0" fitWidth="45.0" layoutX="14.0" layoutY="244.0" pickOnBounds="true">
                            <image>
                               <Image url="@../assets/images/icons8-home-64.png" />
                            </image>
