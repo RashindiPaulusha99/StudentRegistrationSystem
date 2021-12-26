@@ -1,5 +1,6 @@
 package controller;
 
+import dao.LoginDAO;
 import dao.LoginDAOImpl;
 import entity.Login;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ public class RegisterFormController {
     public TextField txtUserId;
     public TextField txtName;
 
-    LoginDAOImpl loginDAO = new LoginDAOImpl();
+    LoginDAO loginDAO = new LoginDAOImpl();
 
     public void loginFormOnAction(ActionEvent event) throws IOException {
         URL resource = getClass().getResource("../view/LoginForm.fxml");
@@ -53,7 +54,7 @@ public class RegisterFormController {
 
     public void registerOnAction(ActionEvent event) {
 
-        if (txtUsername.getText().equals("") || txtPassword.getText().equals("") || txtUserId.getText().equals("") || txtName.getText().equals("")){
+        if (txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() || txtUserId.getText().isEmpty() || txtName.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING,"All Fields Are Required.").show();
         }else {
 

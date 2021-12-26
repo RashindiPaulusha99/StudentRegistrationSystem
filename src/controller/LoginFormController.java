@@ -24,7 +24,7 @@ public class LoginFormController {
 
     public void DashBoardFormOnAction(ActionEvent event) throws IOException {
 
-        if (txtUsername.getText().equals("") || txtPassword.getText().equals("")){
+        if (txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING, "All Fields Are Required.").show();
         }else {
 

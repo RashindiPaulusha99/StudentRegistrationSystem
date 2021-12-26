@@ -24,7 +24,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme1" layoutX="55.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: pink; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme1" layoutX="55.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #f8a5c2; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
@@ -69,7 +69,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme2" layoutX="534.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: pink; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme2" layoutX="534.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #a29bfe; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
@@ -114,7 +114,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme3" layoutX="1021.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: pink; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme3" layoutX="1021.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #7bed9f; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
@@ -159,7 +159,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme4" layoutX="298.0" layoutY="549.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: pink; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme4" layoutX="298.0" layoutY="549.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #eccc68; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
@@ -204,7 +204,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme5" layoutX="794.0" layoutY="542.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: pink; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme5" layoutX="794.0" layoutY="542.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #ff6b81; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>

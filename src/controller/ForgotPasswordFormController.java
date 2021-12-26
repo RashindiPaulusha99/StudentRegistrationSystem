@@ -53,7 +53,7 @@ public class ForgotPasswordFormController {
 
     public void resetOnAction(ActionEvent event) {
 
-        if (txtUsername.getText().equals("") || txtPassword.getText().equals("") || txtConfirmPassword.getText().equals("")){
+        if (txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() || txtConfirmPassword.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING,"All Fields Are Required.").show();
         }else {
 

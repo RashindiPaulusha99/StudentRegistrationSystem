@@ -50,7 +50,7 @@ public class LoginDTO {
 
         @Override
         public String toString() {
-            return "Login{" +
+            return "LoginDTO{" +
                     "userId='" + userId + '\'' +
                     ", userName='" + userName + '\'' +
                     ", password='" + password + '\'' +
