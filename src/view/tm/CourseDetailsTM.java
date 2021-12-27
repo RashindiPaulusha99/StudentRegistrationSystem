@@ -1,23 +1,23 @@
 package view.tm;
 
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.CheckBox;
 
 public class CourseDetailsTM {
     private String PID;
     private String courseName;
     private String duration;
     private double fee;
-    private ToggleButton toggleButton;
+    private CheckBox checkBox;
 
     public CourseDetailsTM() {
     }
 
-    public CourseDetailsTM(String PID, String courseName, String duration, double fee, ToggleButton toggleButton) {
+    public CourseDetailsTM(String PID, String courseName, String duration, double fee, CheckBox checkBox) {
         this.setPID(PID);
         this.setCourseName(courseName);
         this.setDuration(duration);
         this.setFee(fee);
-        this.setToggleButton(toggleButton);
+        this.setCheckBox(checkBox);
     }
 
     public String getPID() {
@@ -52,12 +52,12 @@ public class CourseDetailsTM {
         this.fee = fee;
     }
 
-    public ToggleButton getToggleButton() {
-        return toggleButton;
+    public CheckBox getCheckBox() {
+        return checkBox;
     }
 
-    public void setToggleButton(ToggleButton toggleButton) {
-        this.toggleButton = toggleButton;
+    public void setCheckBox(CheckBox checkBox) {
+        this.checkBox = checkBox;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class CourseDetailsTM {
                 ", courseName='" + courseName + '\'' +
                 ", duration='" + duration + '\'' +
                 ", fee=" + fee +
-                ", toggleButton=" + toggleButton +
+                ", checkBox=" + checkBox +
                 '}';
     }
 }

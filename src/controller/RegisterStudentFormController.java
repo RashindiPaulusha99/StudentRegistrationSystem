@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import view.tm.CourseDetailsTM;
 import view.tm.CourseTM;
 
@@ -41,6 +42,12 @@ public class RegisterStudentFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tblCourse.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("PID"));
+        tblCourse.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        tblCourse.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("duration"));
+        tblCourse.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("fee"));
+        tblCourse.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("checkBox"));
+
         txtFirstName.setDisable(true);
         txtMiddleName.setDisable(true);
         txtLastName.setDisable(true);
@@ -68,8 +75,8 @@ public class RegisterStudentFormController implements Initializable {
         ArrayList<Course> all = courseDAO.getAll();
         ObservableList<CourseDetailsTM> obList = FXCollections.observableArrayList();
         for (Course c : all) {
-            ToggleButton toggleButton = new ToggleButton();
-            obList.add(new CourseDetailsTM(c.getPID(),c.getCourseName(),c.getDuration(),c.getFee(),toggleButton));
+            CheckBox checkBox = new CheckBox();
+            obList.add(new CourseDetailsTM(c.getPID(),c.getCourseName(),c.getDuration(),c.getFee(),checkBox));
         }
         tblCourse.setItems(obList);
     }
@@ -104,6 +111,8 @@ public class RegisterStudentFormController implements Initializable {
         rbtnFemale.setSelected(false);
         chkPayment.setSelected(false);
         dpBirth.setValue(null);
+        tblCourse.getSelectionModel().getSelectedItem().getCheckBox().setSelected(false);
+
     }
 
 }
