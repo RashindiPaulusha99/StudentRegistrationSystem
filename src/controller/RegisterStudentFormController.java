@@ -2,13 +2,24 @@ package controller;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
+import dao.CourseDAO;
+import dao.CourseDAOImpl;
+import entity.Course;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import view.tm.CourseDetailsTM;
+import view.tm.CourseTM;
 
-public class RegisterStudentFormController {
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+public class RegisterStudentFormController implements Initializable {
 
     public Label lblRegisterNO;
     public TextField txtStudentId;
@@ -16,18 +27,65 @@ public class RegisterStudentFormController {
     public TextField txtMiddleName;
     public TextField txtLastName;
     public TextField txtAddress;
+    public TextField txtAge;
     public TextField txtContact;
     public TextField txtEmail;
     public Label lblDate;
     public JFXRadioButton rbtnMale;
     public JFXRadioButton rbtnFemale;
     public CheckBox chkPayment;
-    public TextField txtAge;
     public JFXDatePicker dpBirth;
-    public TableView tblCourse;
+    public TableView<CourseDetailsTM> tblCourse;
+
+    CourseDAO courseDAO = new CourseDAOImpl();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        txtFirstName.setDisable(true);
+        txtMiddleName.setDisable(true);
+        txtLastName.setDisable(true);
+        txtAddress.setDisable(true);
+        txtAge.setDisable(true);
+        txtContact.setDisable(true);
+        txtEmail.setDisable(true);
+        rbtnMale.setDisable(true);
+        rbtnFemale.setDisable(true);
+        chkPayment.setDisable(true);
+        dpBirth.setDisable(true);
+
+        loadDate();
+
+        loadCourseDetails();
+    }
+
+    private void loadDate() {
+        Date date = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        lblDate.setText(f.format(date));
+    }
+
+    private void loadCourseDetails() {
+        ArrayList<Course> all = courseDAO.getAll();
+        ObservableList<CourseDetailsTM> obList = FXCollections.observableArrayList();
+        for (Course c : all) {
+            ToggleButton toggleButton = new ToggleButton();
+            obList.add(new CourseDetailsTM(c.getPID(),c.getCourseName(),c.getDuration(),c.getFee(),toggleButton));
+        }
+        tblCourse.setItems(obList);
+    }
 
     public void newStudentOnAction(ActionEvent event) {
-
+        txtFirstName.setDisable(false);
+        txtMiddleName.setDisable(false);
+        txtLastName.setDisable(false);
+        txtAddress.setDisable(false);
+        txtAge.setDisable(false);
+        txtContact.setDisable(false);
+        txtEmail.setDisable(false);
+        rbtnMale.setDisable(false);
+        rbtnFemale.setDisable(false);
+        chkPayment.setDisable(false);
+        dpBirth.setDisable(false);
     }
 
     public void registerStudentOnAction(ActionEvent event) {
@@ -35,6 +93,17 @@ public class RegisterStudentFormController {
     }
 
     public void clearOnAction(ActionEvent event) {
-
+        txtFirstName.clear();
+        txtMiddleName.clear();
+        txtLastName.clear();
+        txtAddress.clear();
+        txtAge.clear();
+        txtContact.clear();
+        txtEmail.clear();
+        rbtnMale.setSelected(false);
+        rbtnFemale.setSelected(false);
+        chkPayment.setSelected(false);
+        dpBirth.setValue(null);
     }
+
 }

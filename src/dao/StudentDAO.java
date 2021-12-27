@@ -1,4 +1,7 @@
 package dao;
 
-public interface StudentDAO extends crudDAO<St>{
+import entity.Student;
+
+public interface StudentDAO extends crudDAO<Student,String>{
+    String generateStudentIds();
 }
