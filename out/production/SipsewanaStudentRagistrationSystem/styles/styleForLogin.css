@@ -3,5 +3,6 @@
 }
 
 .text-area{
-    -fx-background-color: linear-gradient(to right, #778beb , #00cec9);
+    /*-fx-background-color: linear-gradient(to right, #778beb , #00cec9);*/
+    -fx-background-color: linear-gradient(to right, #ffbe76 ,#f0932b);
 }

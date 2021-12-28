@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import dao.*;
 import embeded.Name;
 import entity.Course;
@@ -13,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -39,12 +41,15 @@ public class RegisterStudentFormController implements Initializable {
     public JFXDatePicker dpBirth;
     public TableView<Course> tblCourse;
     public ComboBox<String> cmbCourses;
+    public AnchorPane paneContext;
 
     CourseDAO courseDAO = new CourseDAOImpl();
     StudentDAO studentDAO = new StudentDAOImpl();
     RegisterDAO registerDAO = new RegisterDAOImpl();
 
     ObservableList<Course> observableList = FXCollections.observableArrayList();
+
+    ComboBox<String> cmbStudentId = new ComboBox<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,6 +91,16 @@ public class RegisterStudentFormController implements Initializable {
                 tblCourse.setItems(observableList);
             }
         });
+
+        cmbStudentId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null){
+                ArrayList<Course> allCourses = courseDAO.getCourseDetails(newValue);
+                for (Course c : allCourses) {
+                    observableList.add(new Course(c.getPID(),c.getCourseName(),c.getDuration(),c.getFee()));
+                }
+                tblCourse.setItems(observableList);
+            }
+        });
     }
 
     private void generateStudentIds() {
@@ -102,7 +117,7 @@ public class RegisterStudentFormController implements Initializable {
         lblDate.setText(f.format(date));
     }
 
-    public void newStudentOnAction(ActionEvent event) {
+    public void visibleTextFields(){
         txtFirstName.setDisable(false);
         txtMiddleName.setDisable(false);
         txtLastName.setDisable(false);
@@ -114,6 +129,37 @@ public class RegisterStudentFormController implements Initializable {
         rbtnFemale.setDisable(false);
         chkPayment.setDisable(false);
         dpBirth.setDisable(false);
+    }
+
+    public void newStudentOnAction(ActionEvent event) {
+        if (paneContext.getChildren() == txtStudentId){
+            visibleTextFields();
+        }else {
+            paneContext.getChildren().remove(cmbStudentId);
+            paneContext.getChildren().add(txtStudentId);
+            visibleTextFields();
+        }
+    }
+
+    public void existsStudentOnAction(ActionEvent event) {
+        cmbStudentId.setStyle("-fx-background-color: white");
+        cmbStudentId.setStyle("-fx-border-radius: 20px");
+        cmbStudentId.setStyle("-fx-background-radius: 20px");
+        cmbStudentId.setStyle("-fx-border-width: 2px");
+        cmbStudentId.setStyle("-fx-border-color: #1dd1a1");
+        cmbStudentId.setStyle("-fx-pref-width: 214px");
+
+        ArrayList<Student> all = studentDAO.getAll();
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        for (Student student : all) {
+            obList.add(student.getsId());
+        }
+        cmbCourses.setItems(obList);
+
+        paneContext.getChildren().remove(txtStudentId);
+        paneContext.getChildren().add(cmbStudentId);
+        visibleTextFields();
+
     }
 
     public void registerStudentOnAction(ActionEvent event) {

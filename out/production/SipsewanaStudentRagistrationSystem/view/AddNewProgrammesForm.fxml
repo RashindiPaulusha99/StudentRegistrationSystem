@@ -90,9 +90,9 @@
             <ComboBox fx:id="cmbDuration" layoutX="26.0" layoutY="229.0" prefHeight="39.0" prefWidth="296.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #1dd1a1; -fx-border-width: 2;" />
          </children>
       </AnchorPane>
-      <ImageView fitHeight="386.0" fitWidth="356.0" layoutX="1084.0" layoutY="93.0" pickOnBounds="true">
+      <ImageView fitHeight="289.0" fitWidth="466.0" layoutX="1009.0" layoutY="184.0" pickOnBounds="true">
          <image>
-            <Image url="@../assets/images/451-4511595_alpha-broadway-system-is-a-place-where-internet.png" />
+            <Image url="@../assets/images/courses.png" />
          </image>
       </ImageView>
    </children>
