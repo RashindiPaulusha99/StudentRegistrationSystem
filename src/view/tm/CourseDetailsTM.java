@@ -20,6 +20,9 @@ public class CourseDetailsTM {
         this.setCheckBox(checkBox);
     }
 
+    public CourseDetailsTM(String pid, String courseName, String duration, double fee) {
+    }
+
     public String getPID() {
         return PID;
     }

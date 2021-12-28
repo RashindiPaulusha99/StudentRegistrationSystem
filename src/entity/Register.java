@@ -1,24 +1,31 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Register {
     @Id
     private String rId;
+    @OneToOne
+    private Student student;
     private String date;
-    private String Courses;
     private String payment;
+    @ManyToMany
+    private List<Course> courseList;
 
     public Register() {
     }
 
-    public Register(String rId, String date, String courses, String payment) {
+    public Register(String rId, Student student, String date, String payment, List<Course> courseList) {
         this.setrId(rId);
+        this.setStudent(student);
         this.setDate(date);
-        setCourses(courses);
         this.setPayment(payment);
+        this.setCourseList(courseList);
+    }
+
+    public Register(String text, Student student, String text1, String payment) {
     }
 
     public String getrId() {
@@ -29,20 +36,20 @@ public class Register {
         this.rId = rId;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getCourses() {
-        return Courses;
-    }
-
-    public void setCourses(String courses) {
-        Courses = courses;
     }
 
     public String getPayment() {
@@ -53,13 +60,22 @@ public class Register {
         this.payment = payment;
     }
 
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
+    }
+
     @Override
     public String toString() {
         return "Register{" +
                 "rId='" + rId + '\'' +
+                ", student=" + student +
                 ", date='" + date + '\'' +
-                ", Courses='" + Courses + '\'' +
-                ", payment='" + payment + '\'' +
+                ", payment=" + payment +
+                /*", courseList=" + courseList +*/
                 '}';
     }
 }

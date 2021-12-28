@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -140,7 +141,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <CheckBox fx:id="chkPayment" layoutX="25.0" layoutY="701.0" mnemonicParsing="false" text="Paid" textFill="WHITE">
+            <CheckBox fx:id="chkPayment" layoutX="25.0" layoutY="708.0" mnemonicParsing="false" text="Paid" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -157,7 +158,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXRadioButton>
-            <TableView fx:id="tblCourse" layoutX="25.0" layoutY="516.0" prefHeight="138.0" prefWidth="737.0" stylesheets="@../styles/styleForAddStudent.css">
+            <TableView fx:id="tblCourse" layoutX="25.0" layoutY="555.0" prefHeight="113.0" prefWidth="737.0" stylesheets="@../styles/styleForAddStudent.css">
               <columns>
                 <TableColumn prefWidth="101.00003051757812" text="PID" />
                   <TableColumn prefWidth="264.0" text="Programme" />
@@ -166,11 +167,12 @@
                   <TableColumn prefWidth="83.0" text="Selection" />
               </columns>
             </TableView>
-            <Label layoutX="25.0" layoutY="674.0" text="Payment :">
+            <Label layoutX="25.0" layoutY="681.0" text="Payment :">
                <font>
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
             </Label>
+            <ComboBox fx:id="cmbCourses" layoutX="26.0" layoutY="510.0" prefHeight="34.0" prefWidth="359.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 2; -fx-border-color: #1dd1a1;" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="556.0" fitWidth="529.0" layoutX="941.0" layoutY="349.0" pickOnBounds="true">

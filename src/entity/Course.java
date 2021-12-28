@@ -2,6 +2,8 @@ package entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 public class Course {
@@ -10,15 +12,25 @@ public class Course {
     private String courseName;
     private String duration;
     private double fee;
+    @ManyToMany(mappedBy = "courseList")
+    private List<Register> registerList;
 
     public Course() {
     }
 
+    public Course(String PID, String courseName, String duration, double fee, List<Register> registerList) {
+        this.PID = PID;
+        this.courseName = courseName;
+        this.duration = duration;
+        this.fee = fee;
+        this.registerList = registerList;
+    }
+
     public Course(String PID, String courseName, String duration, double fee) {
-        this.setPID(PID);
-        this.setCourseName(courseName);
-        this.setDuration(duration);
-        this.setFee(fee);
+        this.PID = PID;
+        this.courseName = courseName;
+        this.duration = duration;
+        this.fee = fee;
     }
 
     public String getPID() {
@@ -51,6 +63,14 @@ public class Course {
 
     public void setFee(double fee) {
         this.fee = fee;
+    }
+
+    public List<Register> getRegisterList() {
+        return registerList;
+    }
+
+    public void setRegisterList(List<Register> registerList) {
+        this.registerList = registerList;
     }
 
     @Override

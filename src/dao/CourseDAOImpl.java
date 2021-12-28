@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Course;
+import entity.Register;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
@@ -26,7 +27,7 @@ public class CourseDAOImpl implements CourseDAO{
         if (save != null){
             return true;
         }else {
-            return true;
+            return false;
         }
     }
 
@@ -94,7 +95,6 @@ public class CourseDAOImpl implements CourseDAO{
         Transaction transaction = session.beginTransaction();
 
         String sql = "SELECT * FROM Course ORDER BY PID DESC LIMIT 1";
-        /*Query query = session.createQuery(hql);*/
         NativeQuery sqlQuery = session.createSQLQuery(sql);
         sqlQuery.addEntity(Course.class);
         List<Course> list = sqlQuery.list();
@@ -126,4 +126,68 @@ public class CourseDAOImpl implements CourseDAO{
             return "CT-0001";
         }
     }
+
+    @Override
+    public ArrayList<Course> getCourseDetails(String name) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql = "FROM Course WHERE courseName=:cName";
+        Query hqlQuery = session.createQuery(hql);
+        Query query = hqlQuery.setParameter("cName", name);
+
+        List<Course> list = query.list();
+        ArrayList<Course> courses = new ArrayList<>();
+
+        for (Course course : list) {
+            courses.add(course);
+        }
+
+        transaction.commit();
+        session.close();
+
+        return courses;
+
+    }
+
+    @Override
+    public boolean saveRegisterDetails(Register register,String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        boolean b;
+
+        String hql = "UPDATE Course SET registerList =:Rlist WHERE PID = :ID";
+        Query query = session.createQuery(hql);
+        query.setParameter("Rlist", register);
+        query.setParameter("ID", id);
+
+        Course course = session.get(Course.class,id);
+
+        if (course.getPID().equals(id)){
+            b = true;
+        }else {
+            b = false;
+        }
+
+        transaction.commit();
+        session.close();
+
+        return b;
+    }
+
+    @Override
+    public boolean updateCourseList(Register register) {
+        for (Course temp : register.getCourseList()) {
+            /*temp.getRegisterList().add(register);*/
+            boolean ifSaved = saveRegisterDetails(register,temp.getPID());
+            if (ifSaved){
+                return true;
+            }else {
+                return false;
+            }
+        }
+        return false;
+    }
+
 }

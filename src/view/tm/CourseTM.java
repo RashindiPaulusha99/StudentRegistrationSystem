@@ -22,6 +22,9 @@ public class CourseTM {
         this.setBtnDelete(btnDelete);
     }
 
+    public CourseTM(String pid, String courseName, String duration, double fee) {
+    }
+
     public String getPID() {
         return PID;
     }
