@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="970.0" prefWidth="1482.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterStudentFormController">
+<AnchorPane fx:id="registerNewContext" prefHeight="970.0" prefWidth="1482.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterStudentFormController">
    <children>
       <AnchorPane prefHeight="85.0" prefWidth="1482.0" style="-fx-background-color: linear-gradient(to right, #778beb , #00cec9);">
          <children>
@@ -32,7 +32,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="117.0" layoutY="113.0" prefHeight="825.0" prefWidth="1168.0" style="-fx-background-radius: 20; -fx-background-color: linear-gradient(to right, #fd79a8 , #a29bfe);">
+      <AnchorPane layoutX="40.0" layoutY="113.0" prefHeight="825.0" prefWidth="1168.0" style="-fx-background-radius: 20; -fx-background-color: linear-gradient(to right, #fd79a8 , #a29bfe);">
          <children>
             <Label layoutX="27.0" layoutY="93.0" text="Student ID :">
                <font>
@@ -101,12 +101,12 @@
                   <Font name="Calibri Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="846.0" layoutY="14.0" text="Date :" textFill="#f2f2f2">
+            <Label layoutX="954.0" layoutY="14.0" text="Date :" textFill="#f2f2f2">
                <font>
                   <Font name="Comic Sans MS Bold" size="21.0" />
                </font>
             </Label>
-            <Label fx:id="lblDate" layoutX="917.0" layoutY="14.0" prefHeight="34.0" prefWidth="167.0" text="2021-12-12" textFill="WHITE">
+            <Label fx:id="lblDate" layoutX="1025.0" layoutY="14.0" prefHeight="34.0" prefWidth="131.0" text="2021-12-12" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
@@ -157,7 +157,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXRadioButton>
-            <TableView fx:id="tblCourse" layoutX="25.0" layoutY="555.0" prefHeight="113.0" prefWidth="737.0" stylesheets="@../styles/styleForAddStudent.css">
+            <TableView fx:id="tblCourse" layoutX="25.0" layoutY="555.0" prefHeight="113.0" prefWidth="737.0" style="-fx-background-color: white; -fx-background-radius: 15;" stylesheets="@../styles/styleForAddStudent.css">
               <columns>
                 <TableColumn prefWidth="113.0" text="PID" />
                   <TableColumn prefWidth="290.0" text="Programme" />

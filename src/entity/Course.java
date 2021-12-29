@@ -1,8 +1,7 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,8 +11,12 @@ public class Course {
     private String courseName;
     private String duration;
     private double fee;
+
+    @OneToMany(mappedBy = "course",fetch = FetchType.EAGER)
+    private List<Register> registerList = new ArrayList<>();
+/*
     @ManyToMany(mappedBy = "courseList")
-    private List<Register> registerList;
+    private List<Register> registerList;*/
 
     public Course() {
     }

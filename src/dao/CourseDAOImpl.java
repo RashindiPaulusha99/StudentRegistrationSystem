@@ -176,18 +176,4 @@ public class CourseDAOImpl implements CourseDAO{
         return b;
     }
 
-    @Override
-    public boolean updateCourseList(Register register) {
-        for (Course temp : register.getCourseList()) {
-            /*temp.getRegisterList().add(register);*/
-            boolean ifSaved = saveRegisterDetails(register,temp.getPID());
-            if (ifSaved){
-                return true;
-            }else {
-                return false;
-            }
-        }
-        return false;
-    }
-
 }

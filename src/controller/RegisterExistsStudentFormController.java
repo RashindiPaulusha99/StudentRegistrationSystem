@@ -1,9 +1,7 @@
 package controller;
 
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import dao.*;
-import embeded.Name;
 import entity.Course;
 import entity.Register;
 import entity.Student;
@@ -23,26 +21,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class RegisterStudentFormController implements Initializable {
+public class RegisterExistsStudentFormController implements Initializable {
 
     public Label lblRegisterNO;
-    public TextField txtStudentId;
     public TextField txtFirstName;
     public TextField txtMiddleName;
     public TextField txtLastName;
     public TextField txtAddress;
-    public TextField txtAge;
     public TextField txtContact;
     public TextField txtEmail;
     public Label lblDate;
     public JFXRadioButton rbtnMale;
     public JFXRadioButton rbtnFemale;
     public CheckBox chkPayment;
-    public JFXDatePicker dpBirth;
+    public TextField txtAge;
     public TableView<Course> tblCourse;
     public ComboBox<String> cmbCourses;
+    public ComboBox<String> cmbStudentIds;
+    public TextField txtDOB;
     public AnchorPane paneContext;
-    public AnchorPane registerNewContext;
+    public AnchorPane registerExistsContext;
 
     CourseDAO courseDAO = new CourseDAOImpl();
     StudentDAO studentDAO = new StudentDAOImpl();
@@ -64,16 +62,43 @@ public class RegisterStudentFormController implements Initializable {
         txtAge.setDisable(true);
         txtContact.setDisable(true);
         txtEmail.setDisable(true);
+        txtDOB.setDisable(true);
         rbtnMale.setDisable(true);
         rbtnFemale.setDisable(true);
         chkPayment.setDisable(true);
-        dpBirth.setDisable(true);
+        cmbStudentIds.setDisable(true);
         cmbCourses.setDisable(true);
 
         loadDate();
 
         generateRegisterIds();
-        generateStudentIds();
+
+        ArrayList<Student> details = studentDAO.getAll();
+        ObservableList<String> list = FXCollections.observableArrayList();
+        for (Student student : details) {
+            list.add(student.getsId());
+        }
+        cmbStudentIds.setItems(list);
+
+        cmbStudentIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null){
+                Student student = studentDAO.search(newValue);
+                txtFirstName.setText(student.getName().getFirstName());
+                txtMiddleName.setText(student.getName().getMiddleName());
+                txtLastName.setText(student.getName().getLastName());
+                txtAddress.setText(student.getAddress());
+                txtAge.setText(String.valueOf(student.getAge()));
+                txtContact.setText(String.valueOf(student.getPhoneNO()));
+                txtEmail.setText(student.getEmail());
+                txtDOB.setText(student.getDOB());
+
+                if (student.getGender().equalsIgnoreCase("male")){
+                    rbtnMale.setSelected(true);
+                } else if (student.getGender().equalsIgnoreCase("female")) {
+                    rbtnFemale.setSelected(true);
+                }
+            }
+        });
 
         ArrayList<Course> all = courseDAO.getAll();
         ObservableList<String> obList = FXCollections.observableArrayList();
@@ -91,10 +116,7 @@ public class RegisterStudentFormController implements Initializable {
                 tblCourse.setItems(observableList);
             }
         });
-    }
 
-    private void generateStudentIds() {
-        txtStudentId.setText(studentDAO.generateStudentIds());
     }
 
     private void generateRegisterIds() {
@@ -107,7 +129,12 @@ public class RegisterStudentFormController implements Initializable {
         lblDate.setText(f.format(date));
     }
 
-    public void newStudentOnAction(ActionEvent event) {
+    public void newStudentOnAction(ActionEvent event) throws IOException {
+        AnchorPane loader = FXMLLoader.load(this.getClass().getResource("../view/RegisterStudentForm.fxml"));
+        registerExistsContext.getChildren().setAll(loader);
+    }
+
+    public void existsStudentOnAction(ActionEvent event) {
         txtFirstName.setDisable(false);
         txtMiddleName.setDisable(false);
         txtLastName.setDisable(false);
@@ -115,21 +142,15 @@ public class RegisterStudentFormController implements Initializable {
         txtAge.setDisable(false);
         txtContact.setDisable(false);
         txtEmail.setDisable(false);
+        txtDOB.setDisable(false);
         rbtnMale.setDisable(false);
         rbtnFemale.setDisable(false);
         chkPayment.setDisable(false);
-        dpBirth.setDisable(false);
+        cmbStudentIds.setDisable(false);
         cmbCourses.setDisable(false);
     }
 
-    public void existsStudentOnAction(ActionEvent event) throws IOException {
-        AnchorPane loader = FXMLLoader.load(this.getClass().getResource("../view/RegisterExistsStudentForm.fxml"));
-        registerNewContext.getChildren().setAll(loader);
-
-    }
-
     public void registerStudentOnAction(ActionEvent event) {
-
         String select = null;
         if (rbtnFemale.isSelected() || rbtnMale.isSelected()) {
             select = "selected";
@@ -138,63 +159,51 @@ public class RegisterStudentFormController implements Initializable {
         }
 
         if (txtFirstName.getText().isEmpty() || txtMiddleName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtAddress.getText().isEmpty() ||
-                txtAge.getText().isEmpty() || txtEmail.getText().isEmpty() || txtContact.getText().isEmpty() || select.equals("not selected") || dpBirth.getValue() == null) {
+                txtAge.getText().isEmpty() || txtEmail.getText().isEmpty() || txtContact.getText().isEmpty() || select.equals("not selected") || txtDOB.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "All Fields Are Required.").show();
         } else {
 
-            String gender = null;
-            if (rbtnMale.isSelected()){
-                gender = "male";
-            }else if (rbtnFemale.isSelected()){
-                gender = "female";
-            }
-
             String payment = null;
-            if (chkPayment.isSelected()){
+            if (chkPayment.isSelected()) {
                 payment = "Paid";
-            }else {
+            } else {
                 payment = "Not Paid";
             }
 
-            Name name = new Name(txtFirstName.getText(),txtMiddleName.getText(),txtLastName.getText());
-
-            Student student = new Student(txtStudentId.getText(), name, String.valueOf(dpBirth.getValue()), Integer.parseInt(txtAge.getText()), gender, txtAddress.getText(), Integer.parseInt(txtContact.getText()), txtEmail.getText());
+            Student student = studentDAO.search(cmbStudentIds.getValue());
 
             ObservableList<Course> items = tblCourse.getItems();
             Course course = null;
             for (Course tempTm : observableList) {
-                course= new Course(tempTm.getPID(), tempTm.getCourseName(), tempTm.getDuration(), tempTm.getFee());
+                course = new Course(tempTm.getPID(), tempTm.getCourseName(), tempTm.getDuration(), tempTm.getFee());
             }
 
-            Register register = new Register(lblRegisterNO.getText(),lblDate.getText(),payment,student,course);
+            Register register = new Register(lblRegisterNO.getText(), lblDate.getText(), payment, student, course);
 
-            if (studentDAO.add(student)) {
-                if (registerDAO.add(register)) {
-                    if (studentDAO.saveRegisterDetails(register, register.getStudentDetails().getsId())) {
-                        if (courseDAO.saveRegisterDetails(register,register.getCourse().getPID())){
-                            new Alert(Alert.AlertType.CONFIRMATION, "Successfully Register.").showAndWait();
+            if (registerDAO.add(register)) {
+                if (studentDAO.saveRegisterDetails(register, register.getStudentDetails().getsId())) {
+                    if (courseDAO.saveRegisterDetails(register, register.getCourse().getPID())) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Successfully Register.").showAndWait();
 
-                            txtFirstName.clear();
-                            txtMiddleName.clear();
-                            txtLastName.clear();
-                            txtAddress.clear();
-                            txtAge.clear();
-                            txtContact.clear();
-                            txtEmail.clear();
-                            rbtnMale.setSelected(false);
-                            rbtnFemale.setSelected(false);
-                            chkPayment.setSelected(false);
-                            dpBirth.setValue(null);
-                            cmbCourses.getSelectionModel().clearSelection();
-                            tblCourse.getItems().clear();
+                        txtFirstName.clear();
+                        txtMiddleName.clear();
+                        txtLastName.clear();
+                        txtAddress.clear();
+                        txtAge.clear();
+                        txtContact.clear();
+                        txtEmail.clear();
+                        rbtnMale.setSelected(false);
+                        rbtnFemale.setSelected(false);
+                        chkPayment.setSelected(false);
+                        txtDOB.clear();
+                        cmbCourses.getSelectionModel().clearSelection();
+                        tblCourse.getItems().clear();
+                        cmbStudentIds.getSelectionModel().clearSelection();
 
-                            generateStudentIds();
+                        generateRegisterIds();
 
-                            generateRegisterIds();
-
-                        } else {
-                            new Alert(Alert.AlertType.WARNING, "Try Again.").show();
-                        }
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Try Again.").show();
                     }
                 }
             }
@@ -212,8 +221,10 @@ public class RegisterStudentFormController implements Initializable {
         rbtnMale.setSelected(false);
         rbtnFemale.setSelected(false);
         chkPayment.setSelected(false);
-        dpBirth.setValue(null);
+        txtDOB.clear();
         tblCourse.getItems().clear();
+        cmbCourses.getSelectionModel().clearSelection();
+        cmbStudentIds.getSelectionModel().clearSelection();
     }
 
 }

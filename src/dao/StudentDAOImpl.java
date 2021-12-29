@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Register;
 import entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -63,8 +64,16 @@ public class StudentDAOImpl implements StudentDAO{
     }
 
     @Override
-    public Student search(String s) {
-        throw new UnsupportedOperationException("No Supported Yet.");
+    public Student search(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Student student = session.get(Student.class, id);
+
+        transaction.commit();
+        session.close();
+
+        return student;
     }
 
     @Override
@@ -124,5 +133,31 @@ public class StudentDAOImpl implements StudentDAO{
             //if no data in database
             return "ST-0001";
         }
+    }
+
+    @Override
+    public boolean saveRegisterDetails(Register register, String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        boolean b;
+
+        String hql = "UPDATE Student SET registerList =:Rlist WHERE sId = :ID";
+        Query query = session.createQuery(hql);
+        query.setParameter("Rlist", register);
+        query.setParameter("ID", id);
+
+        Student student = session.get(Student.class,id);
+
+        if (student.getsId().equals(id)){
+            b = true;
+        }else {
+            b = false;
+        }
+
+        transaction.commit();
+        session.close();
+
+        return b;
     }
 }

@@ -2,9 +2,9 @@ package entity;
 
 import embeded.Name;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -20,6 +20,9 @@ public class Student {
     private int phoneNO;
     private String email;
 
+    @OneToMany(mappedBy = "studentDetails",fetch = FetchType.EAGER)
+    private List<Register> registerList = new ArrayList<>();
+
     public Student() {
     }
 
@@ -32,6 +35,18 @@ public class Student {
         this.setAddress(address);
         this.setPhoneNO(phoneNO);
         this.setEmail(email);
+    }
+
+    public Student(String sId, Name name, String DOB, int age, String gender, String address, int phoneNO, String email, List<Register> registerList) {
+        this.sId = sId;
+        this.name = name;
+        this.DOB = DOB;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+        this.phoneNO = phoneNO;
+        this.email = email;
+        this.setRegisterList(registerList);
     }
 
     public String getsId() {
@@ -96,6 +111,15 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public List<Register> getRegisterList() {
+        return registerList;
+    }
+
+    public void setRegisterList(List<Register> registerList) {
+        this.registerList = registerList;
     }
 
     @Override
