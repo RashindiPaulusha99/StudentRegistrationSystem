@@ -20,7 +20,7 @@ public class Student {
     private int phoneNO;
     private String email;
 
-    @OneToMany(mappedBy = "studentDetails",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "studentDetails",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     private List<Register> registerList = new ArrayList<>();
 
     public Student() {

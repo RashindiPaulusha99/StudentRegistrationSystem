@@ -1,6 +1,5 @@
 package dao;
 
-import entity.Login;
 import entity.Register;
 import entity.Student;
 import org.hibernate.Session;
@@ -71,12 +70,29 @@ public class RegisterDAOImpl implements RegisterDAO{
 
     @Override
     public boolean update(Register register) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(register);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override
-    public boolean delete(String s) {
-        return false;
+    public boolean delete(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Register register = session.get(Register.class, id);
+        session.delete(register);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override
@@ -98,7 +114,7 @@ public class RegisterDAOImpl implements RegisterDAO{
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        String hql = "FROM Register WHERE student= :studentObject";
+        String hql = "FROM Register WHERE studentDetails= :studentObject";
         Query hqlQuery = session.createQuery(hql);
         Query query = hqlQuery.setParameter("studentObject", student);
 
@@ -114,6 +130,6 @@ public class RegisterDAOImpl implements RegisterDAO{
 
     @Override
     public ArrayList<Register> getAll() {
-        return null;
+        throw new UnsupportedOperationException("No Supported Yet.");
     }
 }

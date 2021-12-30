@@ -1,39 +1,58 @@
 package view.tm;
 
+import com.jfoenix.controls.JFXButton;
+
 public class StudentTM {
-    private String sId;
+    private String SId;
     private String firstName;
     private String middleName;
     private String lastName;
     private String DOB;
-    private int age;
-    private String gender;
-    private String address;
-    private int phoneNO;
-    private String email;
+    private int Age;
+    private String Gender;
+    private String Address;
+    private int PhoneNO;
+    private String Email;
+    private JFXButton update;
+    private JFXButton delete;
 
     public StudentTM() {
     }
 
-    public StudentTM(String sId, String firstName, String middleName, String lastName, String DOB, int age, String gender, String address, int phoneNO, String email) {
-        this.setsId(sId);
+    public StudentTM(String SId, String firstName, String middleName, String lastName, String DOB, int Age, String Gender, String Address, int PhoneNO, String Email) {
+        this.setSId(SId);
         this.setFirstName(firstName);
         this.setMiddleName(middleName);
         this.setLastName(lastName);
         this.setDOB(DOB);
-        this.setAge(age);
-        this.setGender(gender);
-        this.setAddress(address);
-        this.setPhoneNO(phoneNO);
-        this.setEmail(email);
+        this.setAge(Age);
+        this.setGender(Gender);
+        this.setAddress(Address);
+        this.setPhoneNO(PhoneNO);
+        this.setEmail(Email);
     }
 
-    public String getsId() {
-        return sId;
+    public StudentTM(String SId, String firstName, String middleName, String lastName, String DOB, int Age, String Gender, String Address, int PhoneNO, String Email, JFXButton update, JFXButton delete) {
+        this.SId = SId;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.DOB = DOB;
+        this.Age = Age;
+        this.Gender = Gender;
+        this.Address = Address;
+        this.PhoneNO = PhoneNO;
+        this.Email = Email;
+        this.setUpdate(update);
+        this.setDelete(delete);
     }
 
-    public void setsId(String sId) {
-        this.sId = sId;
+    public String getSId() {
+        return SId;
+    }
+
+    public void setSId(String SId) {
+        this.SId = SId;
     }
 
     public String getFirstName() {
@@ -69,58 +88,76 @@ public class StudentTM {
     }
 
     public int getAge() {
-        return age;
+        return Age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(int Age) {
+        this.Age = Age;
     }
 
     public String getGender() {
-        return gender;
+        return Gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGender(String Gender) {
+        this.Gender = Gender;
     }
 
     public String getAddress() {
-        return address;
+        return Address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String Address) {
+        this.Address = Address;
     }
 
     public int getPhoneNO() {
-        return phoneNO;
+        return PhoneNO;
     }
 
-    public void setPhoneNO(int phoneNO) {
-        this.phoneNO = phoneNO;
+    public void setPhoneNO(int PhoneNO) {
+        this.PhoneNO = PhoneNO;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public JFXButton getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(JFXButton update) {
+        this.update = update;
+    }
+
+    public JFXButton getDelete() {
+        return delete;
+    }
+
+    public void setDelete(JFXButton delete) {
+        this.delete = delete;
     }
 
     @Override
     public String toString() {
         return "StudentTM{" +
-                "sId='" + sId + '\'' +
+                "SId='" + SId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", DOB='" + DOB + '\'' +
-                ", age=" + age +
-                ", gender='" + gender + '\'' +
-                ", address='" + address + '\'' +
-                ", phoneNO=" + phoneNO +
-                ", email='" + email + '\'' +
+                ", Age=" + Age +
+                ", Gender='" + Gender + '\'' +
+                ", Address='" + Address + '\'' +
+                ", PhoneNO=" + PhoneNO +
+                ", Email='" + Email + '\'' +
+                ", update=" + update +
+                ", delete=" + delete +
                 '}';
     }
 }

@@ -6,8 +6,6 @@ import javax.persistence.*;
 public class Register {
     @Id
     private String rId;
-    /*@OneToOne
-    private Student student;*/
     private String date;
     private String payment;
 
@@ -15,8 +13,6 @@ public class Register {
     private Student studentDetails;
     @ManyToOne
     private Course course;
-    /*@ManyToMany
-    private List<Course> courseList;*/
 
     public Register() {
     }
@@ -28,14 +24,6 @@ public class Register {
         this.studentDetails = studentDetails;
         this.course = course;
     }
-
-    /*public Register(String rId, Student student, String date, String payment, List<Course> courseList) {
-        this.setrId(rId);
-        this.setStudent(student);
-        this.setDate(date);
-        this.setPayment(payment);
-        this.setCourseList(courseList);
-    }*/
 
     public Register(String text, Student student, String text1, String payment) {
     }
@@ -50,14 +38,6 @@ public class Register {
     public void setrId(String rId) {
         this.rId = rId;
     }
-
-    /*public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }*/
 
     public String getDate() {
         return date;
@@ -74,14 +54,6 @@ public class Register {
     public void setPayment(String payment) {
         this.payment = payment;
     }
-
-    /*public List<Course> getCourseList() {
-        return courseList;
-    }
-
-    public void setCourseList(List<Course> courseList) {
-        this.courseList = courseList;
-    }*/
 
     public Student getStudentDetails() {
         return studentDetails;
@@ -103,7 +75,6 @@ public class Register {
     public String toString() {
         return "Register{" +
                 "rId='" + rId + '\'' +
-                /*", student=" + student +*/
                 ", date='" + date + '\'' +
                 ", payment='" + payment + '\'' +
                 ", studentDetails=" + studentDetails +

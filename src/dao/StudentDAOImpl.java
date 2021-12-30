@@ -51,16 +51,11 @@ public class StudentDAOImpl implements StudentDAO{
 
         Student student = session.get(Student.class, id);
         session.delete(student);
-        Student s = session.load(Student.class, id);
 
         transaction.commit();
         session.close();
 
-        if(s == null){
-            return true;
-        }else {
-            return false;
-        }
+        return true;
     }
 
     @Override
@@ -73,6 +68,7 @@ public class StudentDAOImpl implements StudentDAO{
         transaction.commit();
         session.close();
 
+        System.out.println(student+"dao");
         return student;
     }
 
@@ -159,5 +155,27 @@ public class StudentDAOImpl implements StudentDAO{
         session.close();
 
         return b;
+    }
+
+    @Override
+    public int countStudent() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql = "FROM Student";
+        Query query = session.createQuery(hql);
+
+        List<Student> list = query.list();
+
+        int count = 0;
+
+        for (Student student : list) {
+            count = count+1;
+        }
+
+        transaction.commit();
+        session.close();
+
+        return count;
     }
 }

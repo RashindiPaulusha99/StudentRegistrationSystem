@@ -51,21 +51,24 @@ public class CourseDAOImpl implements CourseDAO{
 
         Course course = session.get(Course.class, id);
         session.delete(course);
-        Course c = session.load(Course.class, id);
 
         transaction.commit();
         session.close();
 
-        if(c == null){
-            return true;
-        }else {
-            return false;
-        }
+        return true;
     }
 
     @Override
-    public Course search(String s) {
-        throw new UnsupportedOperationException("No Supported Yet.");
+    public Course search(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Course course = session.get(Course.class, id);
+
+        transaction.commit();
+        session.close();
+
+        return course;
     }
 
     @Override
@@ -174,6 +177,28 @@ public class CourseDAOImpl implements CourseDAO{
         session.close();
 
         return b;
+    }
+
+    @Override
+    public int countCourses() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql = "FROM Course";
+        Query query = session.createQuery(hql);
+
+        List<Course> list = query.list();
+
+        int count = 0;
+
+        for (Course course : list) {
+            count = count+1;
+        }
+
+        transaction.commit();
+        session.close();
+
+        return count;
     }
 
 }

@@ -125,6 +125,19 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
+                        <JFXButton fx:id="btnRegisterList" buttonType="RAISED" layoutX="65.0" layoutY="574.0" onAction="#RegisterDetailsOnAction" onMouseEntered="#mouseEnterAnimationForBtn" onMouseExited="#mouseExitAnimationForBtn" text="Register Detail" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe Print Bold" size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <ImageView fx:id="imgRegisterList1" fitHeight="45.0" fitWidth="45.0" layoutX="13.0" layoutY="577.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../assets/images/icons8-view-details-64.png" />
+                           </image>
+                        </ImageView>
                      </children>
                      <effect>
                         <DropShadow />
@@ -157,7 +170,7 @@
                                  </children>
                               </AnchorPane>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="paneStudentList" layoutX="1011.0" layoutY="296.0" onMouseClicked="#mouseClickedAnimation" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="232.0" prefWidth="338.0" style="-fx-background-color: linear-gradient(to right, #81ecec , #0fb9b1); -fx-background-radius: 50;">
+                        <AnchorPane fx:id="paneStudentList" layoutX="1011.0" layoutY="299.0" onMouseClicked="#mouseClickedAnimation" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="232.0" prefWidth="338.0" style="-fx-background-color: linear-gradient(to right, #81ecec , #0fb9b1); -fx-background-radius: 50;">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -171,7 +184,7 @@
                                     </ImageView>
                                  </children>
                               </AnchorPane>
-                              <Label layoutX="91.0" layoutY="156.0" text="Student List" textFill="WHITE">
+                              <Label layoutX="80.0" layoutY="156.0" text="Student Details" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Italic" size="29.0" />
                                  </font>
@@ -191,7 +204,7 @@
                                     </ImageView>
                                  </children>
                               </AnchorPane>
-                              <Label layoutX="60.0" layoutY="154.0" text="Programme List" textFill="WHITE">
+                              <Label layoutX="60.0" layoutY="154.0" text="Programme Details" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Italic" size="29.0" />
                                  </font>
@@ -312,6 +325,27 @@
                               <Image url="@../assets/images/success.png" />
                            </image>
                         </ImageView>
+                        <AnchorPane fx:id="paneRegisterList" layoutX="146.0" layoutY="592.0" onMouseClicked="#mouseClickedAnimation" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="232.0" prefWidth="338.0" style="-fx-background-color: linear-gradient(to right, #ffda79, #ff793f); -fx-background-radius: 50;">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <children>
+                              <AnchorPane layoutX="104.0" layoutY="22.0" prefHeight="106.0" prefWidth="131.0" style="-fx-background-color: linear-gradient(to right, #ffda79, #ff793f); -fx-background-radius: 40;">
+                                 <children>
+                                    <ImageView fitHeight="84.0" fitWidth="95.0" layoutX="13.0" layoutY="12.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../assets/images/icons8-view-details-64.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="79.0" layoutY="156.0" text="Register Details" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Italic" size="29.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </children>

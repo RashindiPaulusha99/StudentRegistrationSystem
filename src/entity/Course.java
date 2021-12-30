@@ -12,11 +12,8 @@ public class Course {
     private String duration;
     private double fee;
 
-    @OneToMany(mappedBy = "course",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "course",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE )
     private List<Register> registerList = new ArrayList<>();
-/*
-    @ManyToMany(mappedBy = "courseList")
-    private List<Register> registerList;*/
 
     public Course() {
     }

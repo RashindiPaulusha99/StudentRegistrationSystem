@@ -1,9 +1,14 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import dao.CourseDAO;
+import dao.CourseDAOImpl;
+import dao.StudentDAO;
+import dao.StudentDAOImpl;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
@@ -14,8 +19,10 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class DashBoardFormController {
+public class DashBoardFormController implements Initializable {
 
     public StackPane dashboardPaneContext;
     public AnchorPane paneRegisterStudent;
@@ -36,6 +43,18 @@ public class DashBoardFormController {
     public JFXButton btnStudentList;
     public JFXButton btnAddProgrammes;
     public JFXButton btnProgrammesList;
+    public ImageView imgRegisterList1;
+    public JFXButton btnRegisterList;
+    public AnchorPane paneRegisterList;
+
+    StudentDAO studentDAO = new StudentDAOImpl();
+    CourseDAO courseDAO = new CourseDAOImpl();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        lblStudentCount.setText(String.valueOf(studentDAO.countStudent()));
+        lblProgrammesCount.setText(String.valueOf(courseDAO.countCourses()));
+    }
 
     public void setUserAndName(String user, String name){
         lblUser.setText(user);
@@ -52,14 +71,17 @@ public class DashBoardFormController {
                 case "paneRegisterStudent":
                     loader = FXMLLoader.load(this.getClass().getResource("../view/RegisterStudentForm.fxml"));
                     break;
-                case "paneStudentList":
-                    loader = FXMLLoader.load(this.getClass().getResource("../view/ViewStudentForm.fxml"));
+                case "paneRegisterList":
+                    loader = FXMLLoader.load(this.getClass().getResource("../view/RegisterDetailsForm.fxml"));
                     break;
                 case "paneProgrammeList":
                     loader = FXMLLoader.load(this.getClass().getResource("../view/ProgrammeListForm.fxml"));
                     break;
                 case "paneNewProgrammes":
                     loader = FXMLLoader.load(this.getClass().getResource("../view/AddNewProgrammesForm.fxml"));
+                    break;
+                case "paneStudentList":
+                    loader = FXMLLoader.load(this.getClass().getResource("../view/StudentDetailsForm.fxml"));
                     break;
             }
 
@@ -121,7 +143,7 @@ public class DashBoardFormController {
     }
 
     public void StudentListOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../view/ViewStudentForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../view/StudentDetailsForm.fxml"));
         AnchorPane pane = loader.load();
         dashboardPaneContext.getChildren().setAll(pane);
     }
@@ -134,6 +156,12 @@ public class DashBoardFormController {
 
     public void ProgrammeDetailsOnAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../view/ProgrammeListForm.fxml"));
+        AnchorPane pane = loader.load();
+        dashboardPaneContext.getChildren().setAll(pane);
+    }
+
+    public void RegisterDetailsOnAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../view/RegisterDetailsForm.fxml"));
         AnchorPane pane = loader.load();
         dashboardPaneContext.getChildren().setAll(pane);
     }
@@ -151,5 +179,4 @@ public class DashBoardFormController {
             btn.setStyle("-fx-text-fill: white");
         }
     }
-
 }

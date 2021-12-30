@@ -1,10 +1,16 @@
 package dto;
 
+import entity.Register;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class CourseDTO {
     private String PID;
     private String courseName;
     private String duration;
     private double fee;
+    private List<Register> registerList = new ArrayList<>();
 
     public CourseDTO() {
     }
@@ -14,6 +20,14 @@ public class CourseDTO {
         this.setCourseName(courseName);
         this.setDuration(duration);
         this.setFee(fee);
+    }
+
+    public CourseDTO(String PID, String courseName, String duration, double fee, List<Register> registerList) {
+        this.PID = PID;
+        this.courseName = courseName;
+        this.duration = duration;
+        this.fee = fee;
+        this.setRegisterList(registerList);
     }
 
     public String getPID() {
@@ -46,6 +60,14 @@ public class CourseDTO {
 
     public void setFee(double fee) {
         this.fee = fee;
+    }
+
+    public List<Register> getRegisterList() {
+        return registerList;
+    }
+
+    public void setRegisterList(List<Register> registerList) {
+        this.registerList = registerList;
     }
 
     @Override

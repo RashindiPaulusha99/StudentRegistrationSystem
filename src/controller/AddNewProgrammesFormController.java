@@ -106,12 +106,22 @@ public class AddNewProgrammesFormController implements Initializable {
             if (result.orElse(no)==yes){
 
                 if (courseDAO.delete(Value)) {
-                    new Alert(Alert.AlertType.CONFIRMATION,"Delete Successful.").show();
+                    new Alert(Alert.AlertType.CONFIRMATION,"Delete Successful.").showAndWait();
+
+                    loadAllCourses();
+
+                    txtPName.clear();
+                    txtFee.clear();
+                    txtPName.setDisable(true);
+                    txtFee.setDisable(true);
+                    cmbDuration.setDisable(true);
+                    cmbDuration.getSelectionModel().clearSelection();
+
+                    generateCourseIDS();
+
                 }else {
                     new Alert(Alert.AlertType.WARNING,"Try Again.").showAndWait();
                 }
-
-                loadAllCourses();
 
             }else{
             }
@@ -142,6 +152,13 @@ public class AddNewProgrammesFormController implements Initializable {
                     if (courseDAO.update(new Course(txtPID.getText(), txtPName.getText(), cmbDuration.getValue(), Double.parseDouble(txtFee.getText())))) {
                         new Alert(Alert.AlertType.CONFIRMATION, "Successfully Updated New Course.").showAndWait();
                         loadAllCourses();
+                        txtPName.clear();
+                        txtFee.clear();
+                        txtPName.setDisable(true);
+                        txtFee.setDisable(true);
+                        cmbDuration.setDisable(true);
+                        cmbDuration.getSelectionModel().clearSelection();
+
                     }else {
                         new Alert(Alert.AlertType.CONFIRMATION, "Try Again.").show();
                     }
@@ -153,6 +170,7 @@ public class AddNewProgrammesFormController implements Initializable {
     private void loadAllCourses() {
         ArrayList<Course> all = courseDAO.getAll();
         ObservableList<CourseTM> obList = FXCollections.observableArrayList();
+
         for (Course c : all) {
 
             setUBtn();

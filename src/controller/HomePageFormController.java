@@ -37,7 +37,7 @@ public class HomePageFormController {
                     loader = FXMLLoader.load(this.getClass().getResource("../view/RegisterStudentForm.fxml"));
                     break;
                 case "paneStudentList":
-                    loader = FXMLLoader.load(this.getClass().getResource("../view/ViewStudentForm.fxml"));
+                    loader = FXMLLoader.load(this.getClass().getResource("../view/RegisterDetailsForm.fxml"));
                     break;
                 case "paneProgrammeList":
                     loader = FXMLLoader.load(this.getClass().getResource("../view/ProgrammeListForm.fxml"));

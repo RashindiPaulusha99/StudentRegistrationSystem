@@ -10,4 +10,5 @@ public interface CourseDAO extends crudDAO<Course,String>{
     String generateCourseIds();
     ArrayList<Course> getCourseDetails(String name);
     boolean saveRegisterDetails(Register register,String id);
+    int countCourses();
 }

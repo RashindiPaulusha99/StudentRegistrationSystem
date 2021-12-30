@@ -1,5 +1,10 @@
 package dto;
 
+import entity.Register;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudentDTO {
     private String sId;
     private String firstName;
@@ -11,6 +16,7 @@ public class StudentDTO {
     private String address;
     private int phoneNO;
     private String email;
+    private List<Register> registerList = new ArrayList<>();
 
     public StudentDTO() {
     }
@@ -26,6 +32,20 @@ public class StudentDTO {
         this.setAddress(address);
         this.setPhoneNO(phoneNO);
         this.setEmail(email);
+    }
+
+    public StudentDTO(String sId, String firstName, String middleName, String lastName, String DOB, int age, String gender, String address, int phoneNO, String email, List<Register> registerList) {
+        this.sId = sId;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.DOB = DOB;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+        this.phoneNO = phoneNO;
+        this.email = email;
+        this.registerList = registerList;
     }
 
     public String getsId() {
@@ -106,6 +126,14 @@ public class StudentDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Register> getRegisterList() {
+        return registerList;
+    }
+
+    public void setRegisterList(List<Register> registerList) {
+        this.registerList = registerList;
     }
 
     @Override
