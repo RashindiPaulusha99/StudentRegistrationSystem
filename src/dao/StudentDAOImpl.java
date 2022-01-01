@@ -1,5 +1,6 @@
 package dao;
 
+import dao.custom.StudentDAO;
 import entity.Register;
 import entity.Student;
 import org.hibernate.Session;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentDAOImpl implements StudentDAO{
+public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean add(Student student) {
@@ -68,7 +69,6 @@ public class StudentDAOImpl implements StudentDAO{
         transaction.commit();
         session.close();
 
-        System.out.println(student+"dao");
         return student;
     }
 

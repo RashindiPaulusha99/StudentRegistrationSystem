@@ -1,7 +1,8 @@
 package controller;
 
-import dao.LoginDAOImpl;
-import entity.Login;
+import bo.BOFactory;
+import bo.custom.LoginBO;
+import dto.LoginDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +23,7 @@ public class ForgotPasswordFormController {
     public PasswordField txtPassword;
     public PasswordField txtConfirmPassword;
 
-    LoginDAOImpl loginDAO = new LoginDAOImpl();
+    private LoginBO loginBO = (LoginBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.LOGIN);
 
     public void loginFormOnAction(ActionEvent event) throws IOException {
         URL resource = getClass().getResource("../view/LoginForm.fxml");
@@ -59,10 +60,10 @@ public class ForgotPasswordFormController {
 
             if (txtPassword.getText().equals(txtConfirmPassword.getText())){
 
-                Login data = loginDAO.search(txtUsername.getText());
-                Login login = new Login(data.getUserId(),txtUsername.getText(),txtPassword.getText(),data.getName());
+                LoginDTO data = loginBO.SearchLogin(txtUsername.getText());
+                LoginDTO login = new LoginDTO(data.getUserId(),txtUsername.getText(),txtPassword.getText(),data.getName());
 
-                if (loginDAO.update(login)) {
+                if (loginBO.updateLogin(login)) {
                     new Alert(Alert.AlertType.CONFIRMATION,"Your Password was Changed.").show();
                 }else {
                     new Alert(Alert.AlertType.WARNING,"Try Again.").show();

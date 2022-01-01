@@ -1,14 +1,15 @@
 package controller;
 
+import bo.BOFactory;
+import bo.custom.CourseBO;
+import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXButton;
-import dao.CourseDAO;
-import dao.CourseDAOImpl;
-import dao.StudentDAO;
-import dao.StudentDAOImpl;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -47,13 +49,13 @@ public class DashBoardFormController implements Initializable {
     public JFXButton btnRegisterList;
     public AnchorPane paneRegisterList;
 
-    StudentDAO studentDAO = new StudentDAOImpl();
-    CourseDAO courseDAO = new CourseDAOImpl();
+    private StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
+    private CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lblStudentCount.setText(String.valueOf(studentDAO.countStudent()));
-        lblProgrammesCount.setText(String.valueOf(courseDAO.countCourses()));
+        lblStudentCount.setText(String.valueOf(studentBO.countStudent()));
+        lblProgrammesCount.setText(String.valueOf(courseBO.countCourses()));
     }
 
     public void setUserAndName(String user, String name){
@@ -123,9 +125,12 @@ public class DashBoardFormController implements Initializable {
     }
 
     public void logOutOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../view/LoginForm.fxml"));
-        AnchorPane pane = loader.load();
-        dashboardPaneContext.getChildren().setAll(pane);
+        URL resource = getClass().getResource("../view/LoginForm.fxml");
+        Parent load = FXMLLoader.load(resource);
+        Scene scene = new Scene(load);
+        Stage window = (Stage) dashboardPaneContext.getScene().getWindow();
+        window.setScene(scene);
+        window.centerOnScreen();
     }
 
     public void DashboardOnAction(ActionEvent event) throws IOException {

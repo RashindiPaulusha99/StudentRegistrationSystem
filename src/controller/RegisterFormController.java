@@ -1,8 +1,8 @@
 package controller;
 
-import dao.LoginDAO;
-import dao.LoginDAOImpl;
-import entity.Login;
+import bo.BOFactory;
+import bo.custom.LoginBO;
+import dto.LoginDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +23,7 @@ public class RegisterFormController {
     public TextField txtUserId;
     public TextField txtName;
 
-    LoginDAO loginDAO = new LoginDAOImpl();
+    private LoginBO loginBO = (LoginBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.LOGIN);
 
     public void loginFormOnAction(ActionEvent event) throws IOException {
         URL resource = getClass().getResource("../view/LoginForm.fxml");
@@ -58,8 +58,12 @@ public class RegisterFormController {
             new Alert(Alert.AlertType.WARNING,"All Fields Are Required.").show();
         }else {
 
-            if (loginDAO.add(new Login(txtUserId.getText(), txtUsername.getText(), txtPassword.getText(),txtName.getText()))) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.").show();
+            if (loginBO.saveLogin(new LoginDTO(txtUserId.getText(), txtUsername.getText(), txtPassword.getText(),txtName.getText()))) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Registration Successful.").showAndWait();
+                txtUserId.clear();
+                txtUsername.clear();
+                txtPassword.clear();
+                txtName.clear();
             } else {
                 new Alert(Alert.AlertType.WARNING, "Try Again.").show();
             }

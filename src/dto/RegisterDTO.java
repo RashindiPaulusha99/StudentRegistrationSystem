@@ -1,14 +1,11 @@
 package dto;
 
-import entity.Course;
-import entity.Student;
-
 public class RegisterDTO {
     private String rId;
     private String date;
     private String payment;
-    private Student student;
-    private Course course;
+    private StudentDTO student;
+    private CourseDTO course;
 
     public RegisterDTO() {
     }
@@ -19,7 +16,7 @@ public class RegisterDTO {
         this.setPayment(payment);
     }
 
-    public RegisterDTO(String rId, String date, String payment, Student student, Course course) {
+    public RegisterDTO(String rId, String date, String payment, StudentDTO student, CourseDTO course) {
         this.rId = rId;
         this.date = date;
         this.payment = payment;
@@ -51,19 +48,19 @@ public class RegisterDTO {
         this.payment = payment;
     }
 
-    public Student getStudent() {
+    public StudentDTO getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(StudentDTO student) {
         this.student = student;
     }
 
-    public Course getCourse() {
+    public CourseDTO getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(CourseDTO course) {
         this.course = course;
     }
 

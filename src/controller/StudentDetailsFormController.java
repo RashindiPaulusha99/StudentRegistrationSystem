@@ -1,11 +1,11 @@
 package controller;
 
+import bo.BOFactory;
+import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
-import dao.*;
-import embeded.Name;
-import entity.Student;
+import dto.StudentDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,7 +37,7 @@ public class StudentDetailsFormController implements Initializable {
     public JFXRadioButton rbtnMale;
     public JFXRadioButton rbtnFemale;
 
-    StudentDAO studentDAO = new StudentDAOImpl();
+    private StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
 
     int index = -1;
 
@@ -67,11 +67,11 @@ public class StudentDetailsFormController implements Initializable {
 
     public void loadDetails(){
         ObservableList<StudentTM> obList = FXCollections.observableArrayList();
-        ArrayList<Student> all = studentDAO.getAll();
-        for (Student student : all) {
+        ArrayList<StudentDTO> all = studentBO.getStudent();
+        for (StudentDTO student : all) {
             setUBtn();
             setDBtn();
-            obList.add(new StudentTM(student.getsId(),student.getName().getFirstName(),student.getName().getMiddleName(),student.getName().getLastName(),
+            obList.add(new StudentTM(student.getsId(),student.getFirstName(),student.getMiddleName(),student.getLastName(),
                     student.getDOB(),student.getAge(),student.getGender(),student.getAddress(),student.getPhoneNO(),student.getEmail(),buttonUpdate,buttonDelete));
             setOnActionForUpdate();
             setOnActionForDelete(student.getsId());
@@ -112,7 +112,7 @@ public class StudentDetailsFormController implements Initializable {
 
             if (result.orElse(no)==yes){
 
-                if (studentDAO.delete(Value)){
+                if (studentBO.deleteStudent(Value)){
                     new Alert(Alert.AlertType.CONFIRMATION, "Delete Successful.").showAndWait();
                     loadDetails();
                     txtFirstName.clear();
@@ -150,6 +150,7 @@ public class StudentDetailsFormController implements Initializable {
                 txtContact.setText(String.valueOf(student.getPhoneNO()));
                 txtEmail.setText(student.getEmail());
                 txtAddress.setText(student.getAddress());
+                txtSearch.setText(student.getSId());
                 dpBirth.setValue(LocalDate.parse(student.getDOB()));
                 id = student.getSId();
 
@@ -163,10 +164,10 @@ public class StudentDetailsFormController implements Initializable {
     }
 
     public void searchOnAction(ActionEvent event) {
-        Student student = studentDAO.search(txtSearch.getText());
-        txtFirstName.setText(student.getName().getFirstName());
-        txtMiddleName.setText(student.getName().getMiddleName());
-        txtLastName.setText(student.getName().getLastName());
+        StudentDTO student = studentBO.searchStudent(txtSearch.getText());
+        txtFirstName.setText(student.getFirstName());
+        txtMiddleName.setText(student.getMiddleName());
+        txtLastName.setText(student.getLastName());
         txtAddress.setText(student.getAddress());
         txtContact.setText(String.valueOf(student.getPhoneNO()));
         txtAge.setText(String.valueOf(student.getAge()));
@@ -203,10 +204,9 @@ public class StudentDetailsFormController implements Initializable {
             gender = "female";
         }
 
-        Name name = new Name(txtFirstName.getText(),txtMiddleName.getText(),txtLastName.getText());
-        Student student = new Student(id, name, String.valueOf(dpBirth.getValue()), Integer.parseInt(txtAge.getText()), gender, txtAddress.getText(), Integer.parseInt(txtContact.getText()),txtEmail.getText());
+        StudentDTO student = new StudentDTO(id, txtFirstName.getText(),txtMiddleName.getText(),txtLastName.getText(), String.valueOf(dpBirth.getValue()), Integer.parseInt(txtAge.getText()), gender, txtAddress.getText(), Integer.parseInt(txtContact.getText()),txtEmail.getText());
 
-        if (studentDAO.update(student)){
+        if (studentBO.updateStudent(student)){
             new Alert(Alert.AlertType.CONFIRMATION, "Update Successful.").showAndWait();
             loadDetails();
             txtFirstName.clear();
@@ -216,6 +216,7 @@ public class StudentDetailsFormController implements Initializable {
             txtContact.clear();
             txtAge.clear();
             txtEmail.clear();
+            txtSearch.clear();
             dpBirth.setValue(null);
             rbtnFemale.setSelected(false);
             rbtnMale.setSelected(false);

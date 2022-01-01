@@ -1,10 +1,13 @@
 package controller;
 
+import bo.BOFactory;
+import bo.custom.CourseBO;
+import bo.custom.RegisterBO;
+import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXRadioButton;
-import dao.*;
-import entity.Course;
-import entity.Register;
-import entity.Student;
+import dto.CourseDTO;
+import dto.RegisterDTO;
+import dto.StudentDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,18 +38,18 @@ public class RegisterExistsStudentFormController implements Initializable {
     public JFXRadioButton rbtnFemale;
     public CheckBox chkPayment;
     public TextField txtAge;
-    public TableView<Course> tblCourse;
+    public TableView<CourseDTO> tblCourse;
     public ComboBox<String> cmbCourses;
     public ComboBox<String> cmbStudentIds;
     public TextField txtDOB;
     public AnchorPane paneContext;
     public AnchorPane registerExistsContext;
 
-    CourseDAO courseDAO = new CourseDAOImpl();
-    StudentDAO studentDAO = new StudentDAOImpl();
-    RegisterDAO registerDAO = new RegisterDAOImpl();
+    private StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
+    private CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
+    private RegisterBO registerBO = (RegisterBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTER);
 
-    ObservableList<Course> observableList = FXCollections.observableArrayList();
+    ObservableList<CourseDTO> observableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,19 +76,19 @@ public class RegisterExistsStudentFormController implements Initializable {
 
         generateRegisterIds();
 
-        ArrayList<Student> details = studentDAO.getAll();
+        ArrayList<StudentDTO> details = studentBO.getStudent();
         ObservableList<String> list = FXCollections.observableArrayList();
-        for (Student student : details) {
+        for (StudentDTO student : details) {
             list.add(student.getsId());
         }
         cmbStudentIds.setItems(list);
 
         cmbStudentIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null){
-                Student student = studentDAO.search(newValue);
-                txtFirstName.setText(student.getName().getFirstName());
-                txtMiddleName.setText(student.getName().getMiddleName());
-                txtLastName.setText(student.getName().getLastName());
+                StudentDTO student = studentBO.searchStudent(newValue);
+                txtFirstName.setText(student.getFirstName());
+                txtMiddleName.setText(student.getMiddleName());
+                txtLastName.setText(student.getLastName());
                 txtAddress.setText(student.getAddress());
                 txtAge.setText(String.valueOf(student.getAge()));
                 txtContact.setText(String.valueOf(student.getPhoneNO()));
@@ -100,18 +103,18 @@ public class RegisterExistsStudentFormController implements Initializable {
             }
         });
 
-        ArrayList<Course> all = courseDAO.getAll();
+        ArrayList<CourseDTO> all = courseBO.getCourses();
         ObservableList<String> obList = FXCollections.observableArrayList();
-        for (Course course : all) {
+        for (CourseDTO course : all) {
             obList.add(course.getCourseName());
         }
         cmbCourses.setItems(obList);
 
         cmbCourses.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null){
-                ArrayList<Course> allCourses = courseDAO.getCourseDetails(newValue);
-                for (Course c : allCourses) {
-                    observableList.add(new Course(c.getPID(),c.getCourseName(),c.getDuration(),c.getFee()));
+                ArrayList<CourseDTO> allCourses = courseBO.getCourseDetails(newValue);
+                for (CourseDTO c : allCourses) {
+                    observableList.add(new CourseDTO(c.getPID(),c.getCourseName(),c.getDuration(),c.getFee()));
                 }
                 tblCourse.setItems(observableList);
             }
@@ -120,7 +123,7 @@ public class RegisterExistsStudentFormController implements Initializable {
     }
 
     private void generateRegisterIds() {
-        lblRegisterNO.setText(registerDAO.generateRegisterIds());
+        lblRegisterNO.setText(registerBO.generateRegisterIds());
     }
 
     private void loadDate() {
@@ -170,19 +173,19 @@ public class RegisterExistsStudentFormController implements Initializable {
                 payment = "Not Paid";
             }
 
-            Student student = studentDAO.search(cmbStudentIds.getValue());
+            StudentDTO student = studentBO.searchStudent(cmbStudentIds.getValue());
 
-            ObservableList<Course> items = tblCourse.getItems();
-            Course course = null;
-            for (Course tempTm : observableList) {
-                course = new Course(tempTm.getPID(), tempTm.getCourseName(), tempTm.getDuration(), tempTm.getFee());
+            ObservableList<CourseDTO> items = tblCourse.getItems();
+            CourseDTO course = null;
+            for (CourseDTO tempTm : observableList) {
+                course = new CourseDTO(tempTm.getPID(), tempTm.getCourseName(), tempTm.getDuration(), tempTm.getFee());
             }
 
-            Register register = new Register(lblRegisterNO.getText(), lblDate.getText(), payment, student, course);
+            RegisterDTO register = new RegisterDTO(lblRegisterNO.getText(), lblDate.getText(), payment, student, course);
 
-            if (registerDAO.add(register)) {
-                if (studentDAO.saveRegisterDetails(register, register.getStudentDetails().getsId())) {
-                    if (courseDAO.saveRegisterDetails(register, register.getCourse().getPID())) {
+            if (registerBO.saveRegister(register)) {
+                if (studentBO.saveRegisterDetails(register, register.getStudent().getsId())) {
+                    if (courseBO.saveRegisterDetails(register, register.getCourse().getPID())) {
                         new Alert(Alert.AlertType.CONFIRMATION, "Successfully Register.").showAndWait();
 
                         txtFirstName.clear();

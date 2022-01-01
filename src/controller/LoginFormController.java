@@ -1,7 +1,8 @@
 package controller;
 
-import dao.LoginDAOImpl;
-import entity.Login;
+import bo.BOFactory;
+import bo.custom.LoginBO;
+import dto.LoginDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +21,7 @@ public class LoginFormController {
     public TextField txtUsername;
     public TextField txtPassword;
 
-    LoginDAOImpl loginDAO = new LoginDAOImpl();
+    private LoginBO loginBO = (LoginBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.LOGIN);
 
     public void DashBoardFormOnAction(ActionEvent event) throws IOException {
 
@@ -28,7 +29,7 @@ public class LoginFormController {
             new Alert(Alert.AlertType.WARNING, "All Fields Are Required.").show();
         }else {
 
-            Login data = loginDAO.search(txtUsername.getText());
+            LoginDTO data = loginBO.SearchLogin(txtUsername.getText());
 
             if (data.getUserName().equals(txtUsername.getText()) && data.getPassword().equals(txtPassword.getText())){
 

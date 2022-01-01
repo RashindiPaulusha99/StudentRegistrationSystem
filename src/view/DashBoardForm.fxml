@@ -93,7 +93,7 @@
                               <Font name="Tempus Sans ITC" size="25.0" />
                            </font>
                         </Label>
-                        <JFXButton fx:id="btnRegisterStudent" buttonType="RAISED" layoutX="63.0" layoutY="309.0" onAction="#RegisterStudentOnAction" onMouseEntered="#mouseEnterAnimationForBtn" onMouseExited="#mouseExitAnimationForBtn" text="Register New Student " textFill="WHITE">
+                        <JFXButton fx:id="btnRegisterStudent" buttonType="RAISED" layoutX="63.0" layoutY="309.0" onAction="#RegisterStudentOnAction" onMouseEntered="#mouseEnterAnimationForBtn" onMouseExited="#mouseExitAnimationForBtn" text="Register Student " textFill="WHITE">
                            <font>
                               <Font name="Segoe Print Bold" size="20.0" />
                            </font>

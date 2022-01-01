@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="970.0" prefWidth="1482.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProgrammeListFormController">
    <children>
@@ -24,12 +25,12 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme1" layoutX="55.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #f8a5c2; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme1" layoutX="10.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="257.0" prefWidth="276.0" style="-fx-background-color: #f8a5c2; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <ImageView fitHeight="166.0" fitWidth="376.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
+            <ImageView fitHeight="116.0" fitWidth="259.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
                <image>
                   <Image url="@../assets/images/technology.jpg" />
                </image>
@@ -37,44 +38,44 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <Label layoutX="9.0" layoutY="205.0" text="Programme :">
+            <Label layoutX="9.0" layoutY="137.0" text="Programme :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="244.0" text="Duration :">
+            <Label layoutX="9.0" layoutY="176.0" text="Duration :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="286.0" text="Fee :">
+            <Label layoutX="9.0" layoutY="218.0" text="Fee :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="134.0" layoutY="208.0" prefHeight="25.0" prefWidth="251.0" text="Motor Mechanics">
+            <Label layoutX="134.0" layoutY="140.0" prefHeight="25.0" prefWidth="142.0" text="Motor Mechanics">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="245.0" prefHeight="25.0" prefWidth="251.0" text="1 year">
+            <Label layoutX="112.0" layoutY="177.0" prefHeight="25.0" prefWidth="64.0" text="1 year">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="65.0" layoutY="287.0" prefHeight="25.0" prefWidth="251.0" text="100,000.00">
+            <Label layoutX="65.0" layoutY="219.0" prefHeight="25.0" prefWidth="152.0" text="100,000.00">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme2" layoutX="534.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #a29bfe; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme2" layoutX="298.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="257.0" prefWidth="283.0" style="-fx-background-color: #a29bfe; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <ImageView fitHeight="166.0" fitWidth="376.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
+            <ImageView fitHeight="116.0" fitWidth="268.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
                <image>
                   <Image url="@../assets/images/technology.jpg" />
                </image>
@@ -82,44 +83,44 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <Label layoutX="9.0" layoutY="205.0" text="Programme :">
+            <Label layoutX="9.0" layoutY="136.0" text="Programme :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="244.0" text="Duration :">
+            <Label layoutX="9.0" layoutY="175.0" text="Duration :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="286.0" text="Fee :">
+            <Label layoutX="9.0" layoutY="217.0" text="Fee :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="134.0" layoutY="208.0" prefHeight="25.0" prefWidth="251.0" text="Quantity Surveying">
+            <Label layoutX="129.0" layoutY="139.0" prefHeight="25.0" prefWidth="152.0" text="Quantity Surveying">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="245.0" prefHeight="25.0" prefWidth="251.0" text="1 year">
+            <Label layoutX="112.0" layoutY="176.0" prefHeight="25.0" prefWidth="64.0" text="1 year">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="71.0" layoutY="287.0" prefHeight="25.0" prefWidth="251.0" text="100,000.00">
+            <Label layoutX="71.0" layoutY="218.0" prefHeight="25.0" prefWidth="116.0" text="100,000.00">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme3" layoutX="1021.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #7bed9f; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme3" layoutX="593.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="257.0" prefWidth="276.0" style="-fx-background-color: #7bed9f; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <ImageView fitHeight="166.0" fitWidth="376.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
+            <ImageView fitHeight="116.0" fitWidth="259.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
                <image>
                   <Image url="@../assets/images/technology.jpg" />
                </image>
@@ -127,44 +128,44 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <Label layoutX="9.0" layoutY="205.0" text="Programme :">
+            <Label layoutX="9.0" layoutY="137.0" text="Programme :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="244.0" text="Duration :">
+            <Label layoutX="9.0" layoutY="176.0" text="Duration :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="286.0" text="Fee :">
+            <Label layoutX="9.0" layoutY="218.0" text="Fee :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="134.0" layoutY="208.0" prefHeight="25.0" prefWidth="251.0" text="Electronics">
+            <Label layoutX="131.0" layoutY="140.0" prefHeight="25.0" prefWidth="94.0" text="Electronics">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="245.0" prefHeight="25.0" prefWidth="251.0" text="2 year">
+            <Label layoutX="112.0" layoutY="177.0" prefHeight="25.0" prefWidth="64.0" text="2 year">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="71.0" layoutY="287.0" prefHeight="25.0" prefWidth="251.0" text="150,000.00">
+            <Label layoutX="71.0" layoutY="219.0" prefHeight="25.0" prefWidth="103.0" text="150,000.00">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme4" layoutX="298.0" layoutY="549.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #eccc68; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme4" layoutX="882.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="257.0" prefWidth="283.0" style="-fx-background-color: #eccc68; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <ImageView fitHeight="166.0" fitWidth="376.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
+            <ImageView fitHeight="116.0" fitWidth="268.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
                <image>
                   <Image url="@../assets/images/technology.jpg" />
                </image>
@@ -172,44 +173,44 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <Label layoutX="9.0" layoutY="205.0" text="Programme :">
+            <Label layoutX="9.0" layoutY="137.0" text="Programme :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="244.0" text="Duration :">
+            <Label layoutX="9.0" layoutY="176.0" text="Duration :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="286.0" text="Fee :">
+            <Label layoutX="9.0" layoutY="218.0" text="Fee :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="134.0" layoutY="208.0" prefHeight="25.0" prefWidth="251.0" text="Foreign languages - English">
+            <Label layoutX="69.0" layoutY="153.0" prefHeight="25.0" prefWidth="206.0" text="Foreign languages - English">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="245.0" prefHeight="25.0" prefWidth="251.0" text="6 months">
+            <Label layoutX="112.0" layoutY="177.0" prefHeight="25.0" prefWidth="94.0" text="6 months">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="71.0" layoutY="287.0" prefHeight="25.0" prefWidth="251.0" text="50,000.00">
+            <Label layoutX="71.0" layoutY="219.0" prefHeight="25.0" prefWidth="103.0" text="50,000.00">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pnProgramme5" layoutX="794.0" layoutY="542.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="348.0" prefWidth="394.0" style="-fx-background-color: #ff6b81; -fx-background-radius: 20;">
+      <AnchorPane fx:id="pnProgramme5" layoutX="1177.0" layoutY="128.0" onMouseEntered="#mouseEnterAnimation" onMouseExited="#mouseExitAnimation" prefHeight="257.0" prefWidth="296.0" style="-fx-background-color: #ff6b81; -fx-background-radius: 20;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <ImageView fitHeight="166.0" fitWidth="376.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
+            <ImageView fitHeight="116.0" fitWidth="276.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true">
                <image>
                   <Image url="@../assets/images/technology.jpg" />
                </image>
@@ -217,37 +218,48 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <Label layoutX="9.0" layoutY="205.0" text="Programme :">
+            <Label layoutX="9.0" layoutY="134.0" text="Programme :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="244.0" text="Duration :">
+            <Label layoutX="9.0" layoutY="173.0" text="Duration :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="286.0" text="Fee :">
+            <Label layoutX="9.0" layoutY="215.0" text="Fee :">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="134.0" layoutY="208.0" prefHeight="25.0" prefWidth="251.0" text="Computer Hardware">
+            <Label layoutX="134.0" layoutY="137.0" prefHeight="25.0" prefWidth="152.0" text="Computer Hardware">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="112.0" layoutY="245.0" prefHeight="25.0" prefWidth="251.0" text="6 months">
+            <Label layoutX="112.0" layoutY="174.0" prefHeight="25.0" prefWidth="83.0" text="6 months">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="71.0" layoutY="287.0" prefHeight="25.0" prefWidth="251.0" text="50,000.00">
+            <Label layoutX="71.0" layoutY="216.0" prefHeight="25.0" prefWidth="103.0" text="50,000.00">
                <font>
                   <Font name="Comic Sans MS" size="16.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
+      <TableView fx:id="tblCourses" layoutX="40.0" layoutY="447.0" prefHeight="477.0" prefWidth="1405.0" stylesheets="@../styles/styleForAddCourse.css">
+        <columns>
+          <TableColumn prefWidth="158.0" text="Register ID" />
+          <TableColumn prefWidth="218.0" text="Register Date" />
+            <TableColumn prefWidth="153.0" text="Payment" />
+            <TableColumn prefWidth="164.0" text="Course ID " />
+            <TableColumn prefWidth="314.0" text="Course Name" />
+            <TableColumn prefWidth="181.0" text="Duration" />
+            <TableColumn prefWidth="217.0" text="Fee" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

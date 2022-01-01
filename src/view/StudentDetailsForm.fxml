@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="970.0" prefWidth="1482.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentDetailsFormController">
    <children>
       <AnchorPane prefHeight="85.0" prefWidth="1482.0" style="-fx-background-color: linear-gradient(to right, #778beb , #00cec9);">
@@ -32,7 +31,7 @@
       </AnchorPane>
       <AnchorPane layoutX="39.0" layoutY="110.0" prefHeight="837.0" prefWidth="1402.0" style="-fx-background-radius: 20; -fx-background-color: linear-gradient(to right, #c7ecee ,#12CBC4);">
          <children>
-            <TextField fx:id="txtSearch" layoutX="23.0" layoutY="36.0" prefHeight="39.0" prefWidth="871.0" style="-fx-background-color: white; -fx-border-color: #1dd1a1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 2;" />
+            <TextField fx:id="txtSearch" layoutX="23.0" layoutY="36.0" prefHeight="39.0" prefWidth="871.0" promptText="  Enter Student ID" style="-fx-background-color: white; -fx-border-color: #1dd1a1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 2;" />
             <JFXButton buttonType="RAISED" layoutX="914.0" layoutY="36.0" onAction="#searchOnAction" prefHeight="39.0" prefWidth="185.0" style="-fx-background-color: linear-gradient(to right, #686de0 ,#487eb0);" text="Search" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />

@@ -33,7 +33,7 @@
       </AnchorPane>
       <AnchorPane layoutX="38.0" layoutY="108.0" prefHeight="837.0" prefWidth="1124.0" style="-fx-background-radius: 20; -fx-background-color: linear-gradient(to right, #c7ecee ,#12CBC4);">
          <children>
-            <TextField fx:id="txtSearch" layoutX="19.0" layoutY="35.0" prefHeight="39.0" prefWidth="871.0" style="-fx-background-color: white; -fx-border-color: #1dd1a1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 2;" />
+            <TextField fx:id="txtSearch" layoutX="19.0" layoutY="35.0" prefHeight="39.0" prefWidth="871.0" promptText="  Enter Student ID" style="-fx-background-color: white; -fx-border-color: #1dd1a1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 2;" />
             <JFXButton buttonType="RAISED" layoutX="911.0" layoutY="35.0" onAction="#searchOnAction" prefHeight="39.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(to right, #686de0 ,#487eb0);" text="Search" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />

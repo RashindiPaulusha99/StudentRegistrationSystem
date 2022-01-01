@@ -1,12 +1,14 @@
 package controller;
 
+import bo.BOFactory;
+import bo.custom.CourseBO;
+import bo.custom.RegisterBO;
+import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
-import dao.*;
-import embeded.Name;
-import entity.Course;
-import entity.Register;
-import entity.Student;
+import dto.CourseDTO;
+import dto.RegisterDTO;
+import dto.StudentDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,16 +41,16 @@ public class RegisterStudentFormController implements Initializable {
     public JFXRadioButton rbtnFemale;
     public CheckBox chkPayment;
     public JFXDatePicker dpBirth;
-    public TableView<Course> tblCourse;
+    public TableView<CourseDTO> tblCourse;
     public ComboBox<String> cmbCourses;
     public AnchorPane paneContext;
     public AnchorPane registerNewContext;
 
-    CourseDAO courseDAO = new CourseDAOImpl();
-    StudentDAO studentDAO = new StudentDAOImpl();
-    RegisterDAO registerDAO = new RegisterDAOImpl();
+    private StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
+    private CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
+    private RegisterBO registerBO = (RegisterBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTER);
 
-    ObservableList<Course> observableList = FXCollections.observableArrayList();
+    ObservableList<CourseDTO> observableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,18 +77,18 @@ public class RegisterStudentFormController implements Initializable {
         generateRegisterIds();
         generateStudentIds();
 
-        ArrayList<Course> all = courseDAO.getAll();
+        ArrayList<CourseDTO> all = courseBO.getCourses();
         ObservableList<String> obList = FXCollections.observableArrayList();
-        for (Course course : all) {
+        for (CourseDTO course : all) {
             obList.add(course.getCourseName());
         }
         cmbCourses.setItems(obList);
 
         cmbCourses.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null){
-                ArrayList<Course> allCourses = courseDAO.getCourseDetails(newValue);
-                for (Course c : allCourses) {
-                    observableList.add(new Course(c.getPID(),c.getCourseName(),c.getDuration(),c.getFee()));
+                ArrayList<CourseDTO> allCourses = courseBO.getCourseDetails(newValue);
+                for (CourseDTO c : allCourses) {
+                    observableList.add(new CourseDTO(c.getPID(),c.getCourseName(),c.getDuration(),c.getFee()));
                 }
                 tblCourse.setItems(observableList);
             }
@@ -94,11 +96,11 @@ public class RegisterStudentFormController implements Initializable {
     }
 
     private void generateStudentIds() {
-        txtStudentId.setText(studentDAO.generateStudentIds());
+        txtStudentId.setText(studentBO.generateStudentIds());
     }
 
     private void generateRegisterIds() {
-        lblRegisterNO.setText(registerDAO.generateRegisterIds());
+        lblRegisterNO.setText(registerBO.generateRegisterIds());
     }
 
     private void loadDate() {
@@ -156,22 +158,20 @@ public class RegisterStudentFormController implements Initializable {
                 payment = "Not Paid";
             }
 
-            Name name = new Name(txtFirstName.getText(),txtMiddleName.getText(),txtLastName.getText());
+            StudentDTO student = new StudentDTO(txtStudentId.getText(), txtFirstName.getText(),txtMiddleName.getText(),txtLastName.getText(), String.valueOf(dpBirth.getValue()), Integer.parseInt(txtAge.getText()), gender, txtAddress.getText(), Integer.parseInt(txtContact.getText()), txtEmail.getText());
 
-            Student student = new Student(txtStudentId.getText(), name, String.valueOf(dpBirth.getValue()), Integer.parseInt(txtAge.getText()), gender, txtAddress.getText(), Integer.parseInt(txtContact.getText()), txtEmail.getText());
-
-            ObservableList<Course> items = tblCourse.getItems();
-            Course course = null;
-            for (Course tempTm : observableList) {
-                course= new Course(tempTm.getPID(), tempTm.getCourseName(), tempTm.getDuration(), tempTm.getFee());
+            ObservableList<CourseDTO> items = tblCourse.getItems();
+            CourseDTO course = null;
+            for (CourseDTO tempTm : observableList) {
+                course= new CourseDTO(tempTm.getPID(), tempTm.getCourseName(), tempTm.getDuration(), tempTm.getFee());
             }
 
-            Register register = new Register(lblRegisterNO.getText(),lblDate.getText(),payment,student,course);
+            RegisterDTO register = new RegisterDTO(lblRegisterNO.getText(),lblDate.getText(),payment,student,course);
 
-            if (studentDAO.add(student)) {
-                if (registerDAO.add(register)) {
-                    if (studentDAO.saveRegisterDetails(register, register.getStudentDetails().getsId())) {
-                        if (courseDAO.saveRegisterDetails(register,register.getCourse().getPID())){
+            if (studentBO.saveStudent(student)) {
+                if (registerBO.saveRegister(register)) {
+                    if (studentBO.saveRegisterDetails(register, register.getStudent().getsId())) {
+                        if (courseBO.saveRegisterDetails(register,register.getCourse().getPID())){
                             new Alert(Alert.AlertType.CONFIRMATION, "Successfully Register.").showAndWait();
 
                             txtFirstName.clear();

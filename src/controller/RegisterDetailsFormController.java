@@ -1,11 +1,17 @@
 package controller;
 
+import bo.BOFactory;
+import bo.QueryBO;
+import bo.custom.CourseBO;
+import bo.custom.RegisterBO;
+import bo.custom.StudentBO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
-import dao.*;
-import entity.Course;
+import dto.CourseDTO;
+import dto.RegisterDTO;
+import dto.RegisterDetailDTO;
+import dto.StudentDTO;
 import entity.Register;
-import entity.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,9 +43,10 @@ public class RegisterDetailsFormController implements Initializable {
     public TextField txtDuration;
     public JFXDatePicker dpDate;
 
-    StudentDAO studentDAO = new StudentDAOImpl();
-    RegisterDAO registerDAO = new RegisterDAOImpl();
-    CourseDAO courseDAO = new CourseDAOImpl();
+    private StudentBO studentBO = (StudentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
+    private CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
+    private RegisterBO registerBO = (RegisterBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTER);
+    private QueryBO queryBO = (QueryBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.QUERY);
 
     int index = -1;
 
@@ -59,16 +66,16 @@ public class RegisterDetailsFormController implements Initializable {
             }
         });
 
-        ArrayList<Course> all = courseDAO.getAll();
+        ArrayList<CourseDTO> all = courseBO.getCourses();
         ObservableList<String> observableList = FXCollections.observableArrayList();
-        for (Course course : all) {
+        for (CourseDTO course : all) {
             observableList.add(course.getPID());
         }
         cmbCourseIds.setItems(observableList);
 
         cmbCourseIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null){
-                Course course = courseDAO.search(newValue);
+                CourseDTO course = courseBO.searchCourse(newValue);
                 txtPName.setText(course.getCourseName());
                 txtDuration.setText(course.getDuration());
                 txtFee.setText(String.valueOf(course.getFee()));
@@ -110,7 +117,7 @@ public class RegisterDetailsFormController implements Initializable {
 
             if (result.orElse(no)==yes){
 
-                if (registerDAO.delete(Value)){
+                if (registerBO.deleteRegister(Value)){
                     new Alert(Alert.AlertType.CONFIRMATION, "Delete Successful.").showAndWait();
                     txtFirstName.clear();
                     txtMiddleName.clear();
@@ -131,7 +138,7 @@ public class RegisterDetailsFormController implements Initializable {
         });
     }
 
-    Register search = null;
+    RegisterDTO search = null;
 
     public void setOnActionForUpdate(){
 
@@ -148,7 +155,7 @@ public class RegisterDetailsFormController implements Initializable {
                 txtDuration.setText(tm.getDuration());
                 lblRID.setText(tm.getRId());
 
-                search = registerDAO.search(tm.getRId());
+                search = registerBO.searchRegister(tm.getRId());
 
                 dpDate.setValue(LocalDate.parse(search.getDate()));
                 if (search.getPayment().equalsIgnoreCase("paid")){
@@ -161,12 +168,11 @@ public class RegisterDetailsFormController implements Initializable {
     ObservableList<RegisterTM> obList = FXCollections.observableArrayList();
 
     public void searchOnAction(ActionEvent event) {
-        Student student = studentDAO.search(txtSearch.getText());
-        txtFirstName.setText(student.getName().getFirstName());
-        txtMiddleName.setText(student.getName().getMiddleName());
-        txtLastName.setText(student.getName().getLastName());
+        StudentDTO student = studentBO.searchStudent(txtSearch.getText());
+        txtFirstName.setText(student.getFirstName());
+        txtMiddleName.setText(student.getMiddleName());
+        txtLastName.setText(student.getLastName());
 
-        System.out.println(student.getRegisterList()+"list");
         for (Register register : student.getRegisterList()) {
             setUBtn();
             setDBtn();
@@ -235,17 +241,17 @@ public class RegisterDetailsFormController implements Initializable {
         } else {
             ObservableList<RegisterTM> items = tblStudents.getItems();
 
-            Course  course = null;
+            CourseDTO  course = null;
             for (RegisterTM item : items) {
-                course = new Course(item.getPID(),item.getCourseName(),item.getDuration(),item.getFee());
+                course = new CourseDTO(item.getPID(),item.getCourseName(),item.getDuration(),item.getFee());
             }
 
-            Student student = studentDAO.search(txtSearch.getText());
-            Register register = new Register(lblRID.getText(),String.valueOf(dpDate.getValue()),payment,student,course);
+            StudentDTO student = studentBO.searchStudent(txtSearch.getText());
+            RegisterDTO register = new RegisterDTO(lblRID.getText(),String.valueOf(dpDate.getValue()),payment,student,course);
 
-            if (registerDAO.update(register)) {
-                if (studentDAO.saveRegisterDetails(register, register.getStudentDetails().getsId())) {
-                    if (courseDAO.saveRegisterDetails(register,register.getCourse().getPID())){
+            if (registerBO.updateRegister(register)) {
+                if (studentBO.saveRegisterDetails(register, register.getStudent().getsId())) {
+                    if (courseBO.saveRegisterDetails(register,register.getCourse().getPID())){
                         new Alert(Alert.AlertType.CONFIRMATION, "Update Successful.").showAndWait();
 
                         txtFirstName.clear();

@@ -1,9 +1,9 @@
 package controller;
 
+import bo.BOFactory;
+import bo.custom.CourseBO;
 import com.jfoenix.controls.JFXButton;
-import dao.CourseDAO;
-import dao.CourseDAOImpl;
-import entity.Course;
+import dto.CourseDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +28,7 @@ public class AddNewProgrammesFormController implements Initializable {
     public TableView<CourseTM> tblProgrammes;
     public JFXButton btnAdd;
 
-    CourseDAO courseDAO = new CourseDAOImpl();
+    private CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
 
     int index = -1;
 
@@ -69,7 +69,7 @@ public class AddNewProgrammesFormController implements Initializable {
     }
 
     private void generateCourseIDS() {
-        txtPID.setText(courseDAO.generateCourseIds());
+        txtPID.setText(courseBO.generateCourseIds());
     }
 
     JFXButton buttonDelete;
@@ -105,7 +105,7 @@ public class AddNewProgrammesFormController implements Initializable {
 
             if (result.orElse(no)==yes){
 
-                if (courseDAO.delete(Value)) {
+                if (courseBO.deleteCourse(Value)) {
                     new Alert(Alert.AlertType.CONFIRMATION,"Delete Successful.").showAndWait();
 
                     loadAllCourses();
@@ -149,7 +149,7 @@ public class AddNewProgrammesFormController implements Initializable {
                 btnAdd.setText("Update");
 
                 btnAdd.setOnAction(event1 -> {
-                    if (courseDAO.update(new Course(txtPID.getText(), txtPName.getText(), cmbDuration.getValue(), Double.parseDouble(txtFee.getText())))) {
+                    if (courseBO.updateCourse(new CourseDTO(txtPID.getText(), txtPName.getText(), cmbDuration.getValue(), Double.parseDouble(txtFee.getText())))) {
                         new Alert(Alert.AlertType.CONFIRMATION, "Successfully Updated New Course.").showAndWait();
                         loadAllCourses();
                         txtPName.clear();
@@ -168,10 +168,10 @@ public class AddNewProgrammesFormController implements Initializable {
     }
 
     private void loadAllCourses() {
-        ArrayList<Course> all = courseDAO.getAll();
+        ArrayList<CourseDTO> all = courseBO.getCourses();
         ObservableList<CourseTM> obList = FXCollections.observableArrayList();
 
-        for (Course c : all) {
+        for (CourseDTO c : all) {
 
             setUBtn();
             setDBtn();
@@ -195,7 +195,7 @@ public class AddNewProgrammesFormController implements Initializable {
             new Alert(Alert.AlertType.WARNING,"All Fields Are Required.").show();
         }else {
 
-            if (courseDAO.add(new Course(txtPID.getText(), txtPName.getText(), cmbDuration.getValue(), Double.parseDouble(txtFee.getText())))) {
+            if (courseBO.saveCourse(new CourseDTO(txtPID.getText(), txtPName.getText(), cmbDuration.getValue(), Double.parseDouble(txtFee.getText())))) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Successfully Added New Course.").showAndWait();
 
                 loadAllCourses();
