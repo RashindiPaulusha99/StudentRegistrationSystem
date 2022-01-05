@@ -49,7 +49,7 @@ public class CourseDAOImpl implements CourseDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Course course = session.get(Course.class, id);
+        Course course = session.load(Course.class, id);
         session.delete(course);
 
         transaction.commit();
@@ -63,7 +63,7 @@ public class CourseDAOImpl implements CourseDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Course course = session.get(Course.class, id);
+        Course course = session.load(Course.class, id);
 
         transaction.commit();
         session.close();

@@ -39,4 +39,5 @@ public class FactoryConfiguration {
         return sessionFactory.openSession();
     }
 
+
 }
